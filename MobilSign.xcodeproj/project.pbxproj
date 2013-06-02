@@ -22,6 +22,7 @@
 		EA87DA56173521270073AD82 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA87DA55173521270073AD82 /* ChatViewController.m */; };
 		EA87DA58173539FE0073AD82 /* key_57.png in Resources */ = {isa = PBXBuildFile; fileRef = EA87DA57173539FE0073AD82 /* key_57.png */; };
 		EA87DA5A17353A010073AD82 /* key_114.png in Resources */ = {isa = PBXBuildFile; fileRef = EA87DA5917353A010073AD82 /* key_114.png */; };
+		EAB7E14217365E1000794C9D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB7E14117365E1000794C9D /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		EA87DA55173521270073AD82 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		EA87DA57173539FE0073AD82 /* key_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = key_57.png; sourceTree = "<group>"; };
 		EA87DA5917353A010073AD82 /* key_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = key_114.png; sourceTree = "<group>"; };
+		EAB7E14117365E1000794C9D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAB7E14217365E1000794C9D /* CFNetwork.framework in Frameworks */,
 				EA87DA2C1734FA420073AD82 /* UIKit.framework in Frameworks */,
 				EA87DA2E1734FA420073AD82 /* Foundation.framework in Frameworks */,
 				EA87DA301734FA420073AD82 /* CoreGraphics.framework in Frameworks */,
@@ -85,6 +88,7 @@
 		EA87DA2A1734FA420073AD82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EAB7E14117365E1000794C9D /* CFNetwork.framework */,
 				EA87DA2B1734FA420073AD82 /* UIKit.framework */,
 				EA87DA2D1734FA420073AD82 /* Foundation.framework */,
 				EA87DA2F1734FA420073AD82 /* CoreGraphics.framework */,
@@ -344,6 +348,7 @@
 				EA87DA4D1734FA420073AD82 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

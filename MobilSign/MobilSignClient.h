@@ -24,5 +24,6 @@
 - (id)initWithAddress:(NSString *)address;
 - (void)setupConnection;
 - (void)sendMessage:(NSString *)message;
+- (void)pairWithFingerprint:(NSString *)fingerprint;
 
 @end

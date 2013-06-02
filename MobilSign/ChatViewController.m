@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (nonatomic) BOOL dismiss;
 
 @end
 
@@ -87,10 +88,13 @@
                                           cancelButtonTitle:@"Ok"
                                           otherButtonTitles:nil];
     [alert show];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)errorOccurred
 {
+    self.dismiss = YES;
     [self.spinner stopAnimating];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"MobilSign"
@@ -99,6 +103,15 @@
                                           cancelButtonTitle:@"Ok"
                                           otherButtonTitles:nil];
     [alert show];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (self.dismiss) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void)viewDidUnload

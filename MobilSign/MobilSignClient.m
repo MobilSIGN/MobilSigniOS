@@ -48,7 +48,29 @@
             [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
             [inputStream open];
             [outputStream open];
-            
+        
+            // SSL
+//        NSDictionary *settings = [[NSDictionary alloc] initWithObjectsAndKeys:
+//                                  [NSNumber numberWithBool:YES], kCFStreamSSLAllowsExpiredCertificates,
+//                                  [NSNumber numberWithBool:YES], kCFStreamSSLAllowsExpiredRoots,
+//                                  [NSNumber numberWithBool:YES], kCFStreamSSLAllowsAnyRoot,
+//                                  [NSNumber numberWithBool:NO], kCFStreamSSLValidatesCertificateChain,
+//                                  [NSNull null], kCFStreamSSLPeerName,
+//                                  kCFStreamSocketSecurityLevelNegotiatedSSL, kCFStreamSSLLevel,
+//                                  nil ];
+        
+//        NSDictionary *settings = [[NSDictionary alloc] initWithObjectsAndKeys:
+//         [NSNumber numberWithBool:YES], @"kCFStreamSSLAllowsExpiredCertificates",
+//         [NSNumber numberWithBool:YES], @"kCFStreamSSLAllowsExpiredRoots",
+//         [NSNumber numberWithBool:YES], @"kCFStreamSSLAllowsAnyRoot",
+//         [NSNumber numberWithBool:NO], @"kCFStreamSSLValidatesCertificateChain",
+//         [NSNull null], @"kCFStreamSSLPeerName",
+//         @"kCFStreamSocketSecurityLevelNegotiatedSSL", @"kCFStreamSSLLevel",
+//         nil ];
+//
+//        CFReadStreamSetProperty((CFReadStreamRef)inputStream, kCFStreamPropertySSLSettings, (CFTypeRef)settings);
+//        CFWriteStreamSetProperty((CFWriteStreamRef)outputStream, kCFStreamPropertySSLSettings, (CFTypeRef)settings);
+        
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.inputStream = inputStream;
                 self.outputStream = outputStream;
@@ -87,7 +109,8 @@
                         NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSUTF8StringEncoding];
                         
                         if (output && output.length > 0) {
-                            NSLog(@"Server said: %@", output);
+                            //NSLog(@"Server said: %@", output);
+                            [self dispatchMessage:output];
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 [self.delegate didRecievedMessage:output];
                             });
@@ -134,6 +157,26 @@
         NSData *data = [[NSData alloc] initWithData:[message dataUsingEncoding:NSUTF8StringEncoding]];
         [self.outputStream write:[data bytes] maxLength:[data length]];
     }
+}
+
+- (void)pairWithFingerprint:(NSString *)fingerprint
+{
+    [self sendMessage:[NSString stringWithFormat:@"PAIR:%@\n", fingerprint]];
+}
+
+- (void)dispatchMessage:(NSString *)message
+{
+    if (message.length > 5) {
+        if ([[message substringToIndex:5] isEqualToString:@"RESP:"]) {
+            NSLog(@"Response: %@", [message substringFromIndex:5]);
+            return;
+        }
+        if ([[message substringToIndex:5] isEqualToString:@"SEND:"]) {
+            NSLog(@"Recieved message: %@", [message substringFromIndex:5]);
+            return;
+        }
+    }
+    NSLog(@"Unknown message: [%@]", message);
 }
 
 @end

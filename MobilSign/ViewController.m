@@ -50,6 +50,11 @@
     return NO;
 }
 
+- (IBAction)addressButtonPressed:(UIButton *)sender
+{
+    self.addressField.text = sender.titleLabel.text;
+}
+
 - (void)viewDidUnload
 {
     [self setAddressField:nil];
