@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "ZBarReaderView.h"
 
-@interface ChatViewController : UIViewController <UITextFieldDelegate, MobilSignClientDelegate, ZBarReaderViewDelegate>
+@interface QRCodeViewController : UIViewController <MobilSignClientDelegate, ZBarReaderViewDelegate>
 
 @property (strong, nonatomic) NSString *address;
 

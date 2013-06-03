@@ -83,6 +83,7 @@
 
 - (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)eventCode
 {
+    NSLog(@"Handle event: %d", eventCode);
     switch (eventCode) {
             
 		case NSStreamEventOpenCompleted:
@@ -161,14 +162,21 @@
 
 - (void)pairWithFingerprint:(NSString *)fingerprint
 {
-    [self sendMessage:[NSString stringWithFormat:@"PAIR:%@\n", fingerprint]];
+    NSLog(@"Pairing with key: %@", fingerprint);
+    [self sendMessage:[NSString stringWithFormat:@"PAIR:%@", fingerprint]];
 }
 
 - (void)dispatchMessage:(NSString *)message
 {
     if (message.length > 5) {
         if ([[message substringToIndex:5] isEqualToString:@"RESP:"]) {
-            NSLog(@"Response: %@", [message substringFromIndex:5]);
+            NSString *response = [message substringFromIndex:5];
+            NSLog(@"Response: %@", response);
+            
+            if ([[response substringToIndex:6] isEqualToString:@"paired"]) {
+                [self.delegate didPair];
+            }
+            
             return;
         }
         if ([[message substringToIndex:5] isEqualToString:@"SEND:"]) {

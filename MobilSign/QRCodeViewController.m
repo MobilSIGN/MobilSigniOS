@@ -6,25 +6,26 @@
 //  Copyright (c) 2013 Marek Spalek. All rights reserved.
 //
 
-#import "ChatViewController.h"
+#import "QRCodeViewController.h"
 #import "SIAlertView.h"
 #import "UIColor+MLPFlatColors.h"
+#import "UIFont+FlatUI.h"
+#import "PairedViewController.h"
 //#import "ZBarCameraSimulator.h"
 
-@interface ChatViewController ()
+@interface QRCodeViewController ()
 
 @property (strong, nonatomic) MobilSignClient *client;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
-@property (weak, nonatomic) IBOutlet UITextView *textView;
-@property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (nonatomic) BOOL dismiss;
 @property (nonatomic, strong) SIAlertView *errorAlert;
-//@property (nonatomic, strong) ZBarCameraSimulator *cameraSim;
 @property (weak, nonatomic) IBOutlet ZBarReaderView *readerView;
+@property (weak, nonatomic) IBOutlet UILabel *connectingLabel;
+@property (weak, nonatomic) IBOutlet UITextView *scanTextView;
 
 @end
 
-@implementation ChatViewController
+@implementation QRCodeViewController
 
 - (SIAlertView *)errorAlert
 {
@@ -33,20 +34,6 @@
         [_errorAlert addButtonWithTitle:@"Ok" type:SIAlertViewButtonTypeDestructive handler:nil];
     }
     return _errorAlert;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    if (textField.text.length == 0) return NO;
-    
-    if (self.client) {
-        [self.client sendMessage:textField.text];
-        textField.text = @"";
-    } else {
-        [self showAlert:@"Cant send message!"];
-    }
-    
-    return NO;
 }
 
 - (void)connect
@@ -71,27 +58,26 @@
 
 - (void)didRecievedMessage:(NSString *)message
 {
-    self.textView.text = [NSString stringWithFormat:@"%@%@", self.textView.text, message];
-    [self.textView scrollRangeToVisible:NSMakeRange(self.textView.text.length - 1, 0)];
+    
 }
 
 - (void)openCompleted
 {
     [self.spinner stopAnimating];
-    
-    [self.textField setHidden:NO];
-    //[self.textField becomeFirstResponder];
-    
-    [self showAlert:@"Connection successfully opened."];
+    [self.connectingLabel setHidden:YES];
+    [self.scanTextView setHidden:NO];
+    [self.readerView setHidden:NO];
 }
 
 - (void)connectionClosed
 {
+    self.dismiss = YES;
     [self.spinner stopAnimating];
     
-    [self showAlert:@"Connection closed."];
+    [self showAlert:@"Connection to server closed!"];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"NC: %@", self.navigationController);
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)errorOccurred
@@ -101,7 +87,18 @@
     
     [self.errorAlert show];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"NC: %@", self.navigationController);
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)didPair
+{
+    PairedViewController *pairedVC = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"PairedViewController"];
+    pairedVC.client = self.client;
+    pairedVC.client.delegate = pairedVC;
+    
+    [self.navigationController pushViewController:pairedVC animated:YES];
+    
 }
 
 - (void)viewDidLoad
@@ -109,20 +106,24 @@
     [super viewDidLoad];
     
     self.readerView.readerDelegate = self;
+    self.readerView.torchMode = 0;
     
     self.view.backgroundColor = [UIColor flatWhiteColor];
-    
-    self.textView.backgroundColor = [UIColor flatWhiteColor];
-    
+
     self.spinner.color = [UIColor flatDarkBlueColor];
+
+    self.connectingLabel.font = [UIFont boldFlatFontOfSize:[UIFont labelFontSize]];
+    self.connectingLabel.textColor = [UIColor flatDarkBlueColor];
     
-    self.textField.hidden = YES;
+    self.scanTextView.font = [UIFont boldFlatFontOfSize:[UIFont labelFontSize]];
+    self.scanTextView.textColor = [UIColor flatDarkBlueColor];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     if (self.dismiss) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        NSLog(@"NC: %@", self.navigationController);
+        [self.navigationController popToRootViewControllerAnimated:YES];
     } else {
         [self.readerView start];
     }
@@ -136,26 +137,26 @@
 - (void)showAlert:(NSString *)alert
 {
     SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"MobilSign" andMessage:alert];
-    [alertView addButtonWithTitle:@"Ok" type:SIAlertViewButtonTypeDefault handler:nil];
+    [alertView addButtonWithTitle:@"Ok" type:SIAlertViewButtonTypeDestructive handler:nil];
     [alertView show];
 }
 
-- (void)viewDidUnload
-{
-    [self setTextView:nil];
-    [self setTextField:nil];
-    [super viewDidUnload];
-}
-
-- (void) readerView: (ZBarReaderView*) view
-     didReadSymbols: (ZBarSymbolSet*) syms
-          fromImage: (UIImage*) img
+- (void)readerView:(ZBarReaderView *)view didReadSymbols:(ZBarSymbolSet *)syms fromImage:(UIImage *)img
 {
     for(ZBarSymbol *sym in syms) {
-        NSLog(@"QR: %@", sym.data);
-        [self didRecievedMessage:[NSString stringWithFormat:@"%@\n", sym.data]];
-        //break;
+        if ([self checkKey:sym.data]) {
+            [self.readerView stop];
+            [self.client pairWithFingerprint:sym.data];
+            [self showAlert:[NSString stringWithFormat:@"Pairing with key:\n%@", sym.data]];
+            break;
+        }
     }
+}
+
+- (BOOL)checkKey:(NSString *)key
+{
+    NSLog(@"Key scanned: %@", key);
+    return YES;
 }
 
 @end

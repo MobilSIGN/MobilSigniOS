@@ -14,6 +14,7 @@
 - (void)openCompleted;
 - (void)connectionClosed;
 - (void)errorOccurred;
+- (void)didPair;
 
 @end
 

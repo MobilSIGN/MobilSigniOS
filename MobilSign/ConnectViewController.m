@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 Marek Spalek. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "ChatViewController.h"
+#import "ConnectViewController.h"
+#import "QRCodeViewController.h"
 #import "UIColor+MLPFlatColors.h"
 #import "UIFont+FlatUI.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define CORNER_RADIUS 3.0
 
-@interface ViewController ()
+@interface ConnectViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *connectLabel;
 @property (weak, nonatomic) IBOutlet UITextField *addressField;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation ViewController
+@implementation ConnectViewController
 
 - (IBAction)connect:(UIButton *)sender
 {
@@ -31,11 +31,11 @@
     
     if (self.addressField.text && self.addressField.text.length > 0) {
         
-        ChatViewController *chatVC = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"ChatViewController"];
-        chatVC.address = self.addressField.text;
+        QRCodeViewController *qrCodeVC = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"QRCodeViewController"];
+        qrCodeVC.address = self.addressField.text;
         
-        [self presentViewController:chatVC animated:YES completion:nil];
-        [chatVC connect];
+        [self.navigationController pushViewController:qrCodeVC animated:YES];
+        [qrCodeVC connect];
     }
 }
 
