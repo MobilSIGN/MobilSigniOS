@@ -8,8 +8,9 @@
 
 #import "MobilSignClient.h"
 #import <UIKit/UIKit.h>
+#import "ZBarReaderView.h"
 
-@interface ChatViewController : UIViewController <UITextFieldDelegate, MobilSignClientDelegate>
+@interface ChatViewController : UIViewController <UITextFieldDelegate, MobilSignClientDelegate, ZBarReaderViewDelegate>
 
 @property (strong, nonatomic) NSString *address;
 

@@ -9,6 +9,7 @@
 #import "ChatViewController.h"
 #import "SIAlertView.h"
 #import "UIColor+MLPFlatColors.h"
+//#import "ZBarCameraSimulator.h"
 
 @interface ChatViewController ()
 
@@ -18,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (nonatomic) BOOL dismiss;
 @property (nonatomic, strong) SIAlertView *errorAlert;
+//@property (nonatomic, strong) ZBarCameraSimulator *cameraSim;
+@property (weak, nonatomic) IBOutlet ZBarReaderView *readerView;
 
 @end
 
@@ -77,7 +80,7 @@
     [self.spinner stopAnimating];
     
     [self.textField setHidden:NO];
-    [self.textField becomeFirstResponder];
+    //[self.textField becomeFirstResponder];
     
     [self showAlert:@"Connection successfully opened."];
 }
@@ -105,6 +108,8 @@
 {
     [super viewDidLoad];
     
+    self.readerView.readerDelegate = self;
+    
     self.view.backgroundColor = [UIColor flatWhiteColor];
     
     self.textView.backgroundColor = [UIColor flatWhiteColor];
@@ -118,7 +123,14 @@
 {
     if (self.dismiss) {
         [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self.readerView start];
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.readerView stop];
 }
 
 - (void)showAlert:(NSString *)alert
@@ -133,6 +145,17 @@
     [self setTextView:nil];
     [self setTextField:nil];
     [super viewDidUnload];
+}
+
+- (void) readerView: (ZBarReaderView*) view
+     didReadSymbols: (ZBarSymbolSet*) syms
+          fromImage: (UIImage*) img
+{
+    for(ZBarSymbol *sym in syms) {
+        NSLog(@"QR: %@", sym.data);
+        [self didRecievedMessage:[NSString stringWithFormat:@"%@\n", sym.data]];
+        //break;
+    }
 }
 
 @end
