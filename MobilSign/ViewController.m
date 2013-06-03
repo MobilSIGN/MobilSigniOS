@@ -8,11 +8,18 @@
 
 #import "ViewController.h"
 #import "ChatViewController.h"
+#import "UIColor+MLPFlatColors.h"
+#import "UIFont+FlatUI.h"
+#import <QuartzCore/QuartzCore.h>
+
+#define CORNER_RADIUS 3.0
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *connectLabel;
 @property (weak, nonatomic) IBOutlet UITextField *addressField;
 @property (weak, nonatomic) IBOutlet UIButton *connectButton;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *serverButtons;
 
 @end
 
@@ -27,8 +34,33 @@
         ChatViewController *chatVC = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"ChatViewController"];
         chatVC.address = self.addressField.text;
         
-        [self presentModalViewController:chatVC animated:YES];
+        [self presentViewController:chatVC animated:YES completion:nil];
         [chatVC connect];
+    }
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor flatWhiteColor];
+    
+    self.connectLabel.textColor = self.addressField.textColor = [UIColor flatDarkBlackColor];
+    self.connectLabel.font = [UIFont flatFontOfSize:[UIFont labelFontSize]];
+    
+    self.addressField.textColor = [UIColor flatDarkBlackColor];
+    self.addressField.font = [UIFont boldFlatFontOfSize:[UIFont labelFontSize]];
+    
+    self.connectButton.backgroundColor = [UIColor flatDarkBlueColor];
+    self.connectButton.titleLabel.font = [UIFont boldFlatFontOfSize:[UIFont buttonFontSize]];
+    [self.connectButton setTitleColor:[UIColor flatWhiteColor] forState:UIControlStateNormal];
+    self.connectButton.layer.cornerRadius = CORNER_RADIUS;
+    
+    for (UIButton *button in self.serverButtons) {
+        button.backgroundColor = [UIColor flatDarkBlueColor];
+        button.titleLabel.font = [UIFont boldFlatFontOfSize:[UIFont buttonFontSize]];
+        [button setTitleColor:[UIColor flatWhiteColor] forState:UIControlStateNormal];
+        button.layer.cornerRadius = CORNER_RADIUS;
     }
 }
 
@@ -59,6 +91,8 @@
 {
     [self setAddressField:nil];
     [self setConnectButton:nil];
+    [self setServerButtons:nil];
+    [self setConnectLabel:nil];
     [super viewDidUnload];
 }
 

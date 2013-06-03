@@ -7,6 +7,8 @@
 //
 
 #import "ChatViewController.h"
+#import "SIAlertView.h"
+#import "UIColor+MLPFlatColors.h"
 
 @interface ChatViewController ()
 
@@ -15,10 +17,20 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (nonatomic) BOOL dismiss;
+@property (nonatomic, strong) SIAlertView *errorAlert;
 
 @end
 
 @implementation ChatViewController
+
+- (SIAlertView *)errorAlert
+{
+    if (!_errorAlert) {
+        _errorAlert = [[SIAlertView alloc] initWithTitle:@"MobilSign" andMessage:@"Connection error occured!\nPlease try again later."];
+        [_errorAlert addButtonWithTitle:@"Ok" type:SIAlertViewButtonTypeDestructive handler:nil];
+    }
+    return _errorAlert;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -28,12 +40,7 @@
         [self.client sendMessage:textField.text];
         textField.text = @"";
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"MobilSign"
-                                                        message:@"Cant send message!"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
-        [alert show];
+        [self showAlert:@"Cant send message!"];
     }
     
     return NO;
@@ -70,24 +77,14 @@
     [self.spinner stopAnimating];
     [self.textField becomeFirstResponder];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"MobilSign"
-                                                    message:@"Connection successfully opened."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"Ok"
-                                          otherButtonTitles:nil];
-    [alert show];
+    [self showAlert:@"Connection successfully opened."];
 }
 
 - (void)connectionClosed
 {
     [self.spinner stopAnimating];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"MobilSign"
-                                                    message:@"Connection closed."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"Ok"
-                                          otherButtonTitles:nil];
-    [alert show];
+    [self showAlert:@"Connection closed."];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -97,14 +94,20 @@
     self.dismiss = YES;
     [self.spinner stopAnimating];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"MobilSign"
-                                                    message:@"Connection error occured!"
-                                                   delegate:nil
-                                          cancelButtonTitle:@"Ok"
-                                          otherButtonTitles:nil];
-    [alert show];
+    [self.errorAlert show];
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor flatWhiteColor];
+    
+    self.textView.backgroundColor = [UIColor flatWhiteColor];
+    
+    self.spinner.color = [UIColor flatDarkBlueColor];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -112,6 +115,13 @@
     if (self.dismiss) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+}
+
+- (void)showAlert:(NSString *)alert
+{
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"MobilSign" andMessage:alert];
+    [alertView addButtonWithTitle:@"Ok" type:SIAlertViewButtonTypeDefault handler:nil];
+    [alertView show];
 }
 
 - (void)viewDidUnload
