@@ -75,6 +75,8 @@
 - (void)openCompleted
 {
     [self.spinner stopAnimating];
+    
+    [self.textField setHidden:NO];
     [self.textField becomeFirstResponder];
     
     [self showAlert:@"Connection successfully opened."];
@@ -108,6 +110,8 @@
     self.textView.backgroundColor = [UIColor flatWhiteColor];
     
     self.spinner.color = [UIColor flatDarkBlueColor];
+    
+    self.textField.hidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated
