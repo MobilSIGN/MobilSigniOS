@@ -49,15 +49,13 @@
             [inputStream open];
             [outputStream open];
         
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.inputStream = inputStream;
+                self.outputStream = outputStream;
+            });
+        
             // SSL
-//        NSDictionary *settings = [[NSDictionary alloc] initWithObjectsAndKeys:
-//                                  [NSNumber numberWithBool:YES], kCFStreamSSLAllowsExpiredCertificates,
-//                                  [NSNumber numberWithBool:YES], kCFStreamSSLAllowsExpiredRoots,
-//                                  [NSNumber numberWithBool:YES], kCFStreamSSLAllowsAnyRoot,
-//                                  [NSNumber numberWithBool:NO], kCFStreamSSLValidatesCertificateChain,
-//                                  [NSNull null], kCFStreamSSLPeerName,
-//                                  kCFStreamSocketSecurityLevelNegotiatedSSL, kCFStreamSSLLevel,
-//                                  nil ];
+        
         
 //        NSDictionary *settings = [[NSDictionary alloc] initWithObjectsAndKeys:
 //         [NSNumber numberWithBool:YES], @"kCFStreamSSLAllowsExpiredCertificates",
@@ -67,14 +65,20 @@
 //         [NSNull null], @"kCFStreamSSLPeerName",
 //         @"kCFStreamSocketSecurityLevelNegotiatedSSL", @"kCFStreamSSLLevel",
 //         nil ];
-//
-//        CFReadStreamSetProperty((CFReadStreamRef)inputStream, kCFStreamPropertySSLSettings, (CFTypeRef)settings);
-//        CFWriteStreamSetProperty((CFWriteStreamRef)outputStream, kCFStreamPropertySSLSettings, (CFTypeRef)settings);
+
+        NSDictionary *settings = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                  [NSNumber numberWithBool:YES], kCFStreamSSLAllowsExpiredCertificates,
+                                  [NSNumber numberWithBool:YES], kCFStreamSSLAllowsExpiredRoots,
+                                  [NSNumber numberWithBool:YES], kCFStreamSSLAllowsAnyRoot,
+                                  [NSNumber numberWithBool:NO], kCFStreamSSLValidatesCertificateChain,
+                                  [NSNull null], kCFStreamSSLPeerName,
+                                  kCFStreamSocketSecurityLevelNegotiatedSSL, kCFStreamSSLLevel,
+                                  nil ];
         
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.inputStream = inputStream;
-                self.outputStream = outputStream;
-            });
+        CFReadStreamSetProperty((CFReadStreamRef)inputStream, kCFStreamPropertySSLSettings, (CFTypeRef)settings);
+        CFWriteStreamSetProperty((CFWriteStreamRef)outputStream, kCFStreamPropertySSLSettings, (CFTypeRef)settings);
+        
+            
         //});
     } else {
         NSLog(@"Address was not set!");
@@ -83,10 +87,11 @@
 
 - (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)eventCode
 {
-    NSLog(@"Handle event: %d", eventCode);
+    NSLog(@"Handle event: %d for stream: %@", eventCode, stream);
     switch (eventCode) {
             
 		case NSStreamEventOpenCompleted:
+            NSLog(@"Stream opened.");
             if (stream == self.inputStream) {
                 NSLog(@"Input stream opened");
             } else if (stream == self.outputStream) {
@@ -98,6 +103,7 @@
 			break;
             
 		case NSStreamEventHasBytesAvailable:
+            NSLog(@"Bytes available.");
             if (stream == self.inputStream) {
                 
                 uint8_t buffer[1024];
@@ -124,7 +130,7 @@
             
 		case NSStreamEventErrorOccurred:
         {
-			NSLog(@"Can not connect to the host!");
+			NSLog(@"Error: Can not connect to the host!");
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.delegate errorOccurred];
             });
@@ -142,7 +148,7 @@
         }
 			break;
         case NSStreamEventHasSpaceAvailable:
-            //NSLog(@"Has space available");
+            NSLog(@"Has space available");
             break;
 		default:
 			NSLog(@"Unknown event");
@@ -157,12 +163,18 @@
         NSLog(@"Send message: %@", message);
         NSData *data = [[NSData alloc] initWithData:[message dataUsingEncoding:NSUTF8StringEncoding]];
         [self.outputStream write:[data bytes] maxLength:[data length]];
+    } else {
+        if (!self.outputStream) {
+            NSLog(@"Output stream not existing!");
+        } else if (![self.outputStream hasSpaceAvailable]) {
+            NSLog(@"Output stream hasn't space available!");
+        }
     }
 }
 
 - (void)pairWithFingerprint:(NSString *)fingerprint
 {
-    NSLog(@"Pairing with key: %@", fingerprint);
+    NSLog(@"Pairing with key fingerprint: %@", fingerprint);
     [self sendMessage:[NSString stringWithFormat:@"PAIR:%@", fingerprint]];
 }
 

@@ -49,16 +49,16 @@
     self.connectLabel.font = [UIFont flatFontOfSize:[UIFont labelFontSize]];
     
     self.addressField.textColor = [UIColor flatDarkBlackColor];
-    self.addressField.font = [UIFont boldFlatFontOfSize:[UIFont labelFontSize]];
+    self.addressField.font = [UIFont flatFontOfSize:[UIFont labelFontSize]];
     
     self.connectButton.backgroundColor = [UIColor flatDarkBlueColor];
-    self.connectButton.titleLabel.font = [UIFont boldFlatFontOfSize:[UIFont buttonFontSize]];
+    self.connectButton.titleLabel.font = [UIFont flatFontOfSize:[UIFont buttonFontSize]];
     [self.connectButton setTitleColor:[UIColor flatWhiteColor] forState:UIControlStateNormal];
     self.connectButton.layer.cornerRadius = CORNER_RADIUS;
     
     for (UIButton *button in self.serverButtons) {
         button.backgroundColor = [UIColor flatDarkBlueColor];
-        button.titleLabel.font = [UIFont boldFlatFontOfSize:[UIFont buttonFontSize]];
+        button.titleLabel.font = [UIFont flatFontOfSize:[UIFont buttonFontSize]];
         [button setTitleColor:[UIColor flatWhiteColor] forState:UIControlStateNormal];
         button.layer.cornerRadius = CORNER_RADIUS;
     }

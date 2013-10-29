@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA08B60018166589000CB080 /* NSData+SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = EA08B5FF18166589000CB080 /* NSData+SHA1.m */; };
+		EA08B604181665E4000CB080 /* NSString+SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = EA08B603181665E4000CB080 /* NSString+SHA1.m */; };
 		EA5CFCE0175C9D73002FE0AE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5CFCDF175C9D73002FE0AE /* QuartzCore.framework */; };
 		EA5CFCE3175C9FE0002FE0AE /* SIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5CFCE2175C9FE0002FE0AE /* SIAlertView.m */; };
 		EA5CFD03175CA032002FE0AE /* UITabBar+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5CFCEB175CA032002FE0AE /* UITabBar+FlatUI.m */; };
@@ -48,6 +50,7 @@
 		EA5CFF1E175CB75E002FE0AE /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5CFF1D175CB75E002FE0AE /* libiconv.dylib */; };
 		EA5CFF20175CBC78002FE0AE /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5CFF1F175CBC78002FE0AE /* CoreVideo.framework */; };
 		EA5CFF23175CD178002FE0AE /* PairedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5CFF22175CD178002FE0AE /* PairedViewController.m */; };
+		EA75D5D7181FBD0700A3A903 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EA75D5D6181FBD0700A3A903 /* NSData+Base64.m */; };
 		EA87DA2C1734FA420073AD82 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA87DA2B1734FA420073AD82 /* UIKit.framework */; };
 		EA87DA2E1734FA420073AD82 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA87DA2D1734FA420073AD82 /* Foundation.framework */; };
 		EA87DA301734FA420073AD82 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA87DA2F1734FA420073AD82 /* CoreGraphics.framework */; };
@@ -67,6 +70,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA08B5FE18166589000CB080 /* NSData+SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SHA1.h"; sourceTree = "<group>"; };
+		EA08B5FF18166589000CB080 /* NSData+SHA1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SHA1.m"; sourceTree = "<group>"; };
+		EA08B602181665E4000CB080 /* NSString+SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SHA1.h"; sourceTree = "<group>"; };
+		EA08B603181665E4000CB080 /* NSString+SHA1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SHA1.m"; sourceTree = "<group>"; };
 		EA5CFCDF175C9D73002FE0AE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EA5CFCE1175C9FE0002FE0AE /* SIAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAlertView.h; sourceTree = "<group>"; };
 		EA5CFCE2175C9FE0002FE0AE /* SIAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIAlertView.m; sourceTree = "<group>"; };
@@ -146,6 +153,8 @@
 		EA5CFF1F175CBC78002FE0AE /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		EA5CFF21175CD178002FE0AE /* PairedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PairedViewController.h; sourceTree = "<group>"; };
 		EA5CFF22175CD178002FE0AE /* PairedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PairedViewController.m; sourceTree = "<group>"; };
+		EA75D5D5181FBD0700A3A903 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		EA75D5D6181FBD0700A3A903 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		EA87DA281734FA420073AD82 /* MobilSign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobilSign.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA87DA2B1734FA420073AD82 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EA87DA2D1734FA420073AD82 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -194,6 +203,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA08B601181665C2000CB080 /* SHA1 */ = {
+			isa = PBXGroup;
+			children = (
+				EA08B5FE18166589000CB080 /* NSData+SHA1.h */,
+				EA08B5FF18166589000CB080 /* NSData+SHA1.m */,
+				EA08B602181665E4000CB080 /* NSString+SHA1.h */,
+				EA08B603181665E4000CB080 /* NSString+SHA1.m */,
+			);
+			name = SHA1;
+			sourceTree = "<group>";
+		};
 		EA5CFCE4175CA01E002FE0AE /* FlatUIKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,6 +352,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		EA75D5D4181FBCD300A3A903 /* Base64 */ = {
+			isa = PBXGroup;
+			children = (
+				EA75D5D5181FBD0700A3A903 /* NSData+Base64.h */,
+				EA75D5D6181FBD0700A3A903 /* NSData+Base64.m */,
+			);
+			name = Base64;
+			sourceTree = "<group>";
+		};
 		EA87DA1F1734FA420073AD82 = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +412,8 @@
 		EA87DA321734FA420073AD82 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EA75D5D4181FBCD300A3A903 /* Base64 */,
+				EA08B601181665C2000CB080 /* SHA1 */,
 				EA5CFEF4175CB6EC002FE0AE /* ZBarSDK */,
 				EA5CFD2D175CA8E7002FE0AE /* SIAlertView */,
 				EA5CFD2C175CA8D7002FE0AE /* MLPFlatColors */,
@@ -527,6 +558,7 @@
 				EA5CFD05175CA032002FE0AE /* UINavigationBar+FlatUI.m in Sources */,
 				EA5CFD06175CA032002FE0AE /* UIFont+FlatUI.m in Sources */,
 				EA5CFD07175CA032002FE0AE /* UISlider+FlatUI.m in Sources */,
+				EA75D5D7181FBD0700A3A903 /* NSData+Base64.m in Sources */,
 				EA5CFD08175CA032002FE0AE /* UITableViewCell+FlatUI.m in Sources */,
 				EA5CFD09175CA032002FE0AE /* UIStepper+FlatUI.m in Sources */,
 				EA5CFD0A175CA032002FE0AE /* FUIButton.m in Sources */,
@@ -539,6 +571,8 @@
 				EA5CFD11175CA032002FE0AE /* FUIAlertView.m in Sources */,
 				EA5CFD14175CA124002FE0AE /* UIColor+MLPFlatColors.m in Sources */,
 				EA5CFF23175CD178002FE0AE /* PairedViewController.m in Sources */,
+				EA08B60018166589000CB080 /* NSData+SHA1.m in Sources */,
+				EA08B604181665E4000CB080 /* NSString+SHA1.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

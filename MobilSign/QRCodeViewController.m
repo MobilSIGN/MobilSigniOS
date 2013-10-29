@@ -11,6 +11,7 @@
 #import "UIColor+MLPFlatColors.h"
 #import "UIFont+FlatUI.h"
 #import "PairedViewController.h"
+#import "NSString+SHA1.h"
 //#import "ZBarCameraSimulator.h"
 
 @interface QRCodeViewController ()
@@ -67,7 +68,16 @@
     [self.connectingLabel setHidden:YES];
     [self.scanTextView setHidden:NO];
     [self.readerView setHidden:NO];
+    
+    [self performSelector:@selector(sendTestMessage) withObject:nil afterDelay:1.0];
 }
+
+- (void)sendTestMessage
+{
+    NSLog(@"Test message.");
+    [self.client sendMessage:@"message\n"];
+}
+
 
 - (void)connectionClosed
 {
@@ -145,9 +155,12 @@
 {
     for(ZBarSymbol *sym in syms) {
         if ([self checkKey:sym.data]) {
+            long long key = [sym.data longLongValue];
+            NSLog(@"Long long value: %lld", key);
+            NSString *fingerprint = [sym.data SHA1];
             [self.readerView stop];
-            [self.client pairWithFingerprint:sym.data];
-            [self showAlert:[NSString stringWithFormat:@"Pairing with key:\n%@", sym.data]];
+            [self.client pairWithFingerprint:fingerprint];
+            [self showAlert:[NSString stringWithFormat:@"Pairing with key fingerprint:\n%@", fingerprint]];
             break;
         }
     }
