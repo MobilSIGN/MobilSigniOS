@@ -11,4 +11,11 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "MobilSignClient.h"
+    #import "KeychainManager.h"
+    #import "NSData+Base64.h"
+    #import "NSString+SHA1.h"
+    #import "NSData+SHA1.h"
+    #import "UIAlertView+Extensions.h"
+    #import "UIStoryboard+Extensions.h"
 #endif

@@ -6,11 +6,10 @@
 //  Copyright (c) 2013 Marek Spalek. All rights reserved.
 //
 
-#import "MobilSignClient.h"
 #import <UIKit/UIKit.h>
 #import "ZBarReaderView.h"
 
-@interface QRCodeViewController : UIViewController <MobilSignClientDelegate, ZBarReaderViewDelegate>
+@interface QRCodeViewController : UITableViewController <MobilSignClientDelegate, ZBarReaderViewDelegate>
 
 @property (strong, nonatomic) NSString *address;
 

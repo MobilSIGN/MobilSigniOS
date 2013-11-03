@@ -9,8 +9,14 @@
 /* Begin PBXBuildFile section */
 		EA08B60018166589000CB080 /* NSData+SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = EA08B5FF18166589000CB080 /* NSData+SHA1.m */; };
 		EA08B604181665E4000CB080 /* NSString+SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = EA08B603181665E4000CB080 /* NSString+SHA1.m */; };
+		EA2B01931826705B008DD366 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA2B01921826705B008DD366 /* Images.xcassets */; };
+		EA2B01961826716D008DD366 /* PasscodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B01951826716D008DD366 /* PasscodeViewController.m */; };
+		EA2B019A182671A8008DD366 /* UIStoryboard+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B0199182671A8008DD366 /* UIStoryboard+Extensions.m */; };
+		EA2B019E182678A9008DD366 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B019D182678A9008DD366 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA2B01A01826798C008DD366 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2B019F1826798C008DD366 /* Security.framework */; };
+		EA2B01A318267ED1008DD366 /* UIAlertView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B01A218267ED1008DD366 /* UIAlertView+Extensions.m */; };
+		EA2B01A6182680AF008DD366 /* KeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B01A5182680AF008DD366 /* KeychainManager.m */; };
 		EA5CFCE0175C9D73002FE0AE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5CFCDF175C9D73002FE0AE /* QuartzCore.framework */; };
-		EA5CFCE3175C9FE0002FE0AE /* SIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5CFCE2175C9FE0002FE0AE /* SIAlertView.m */; };
 		EA5CFD03175CA032002FE0AE /* UITabBar+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5CFCEB175CA032002FE0AE /* UITabBar+FlatUI.m */; };
 		EA5CFD04175CA032002FE0AE /* UIProgressView+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5CFCF0175CA032002FE0AE /* UIProgressView+FlatUI.m */; };
 		EA5CFD05175CA032002FE0AE /* UINavigationBar+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5CFCF4175CA032002FE0AE /* UINavigationBar+FlatUI.m */; };
@@ -38,7 +44,6 @@
 		EA5CFD29175CA29B002FE0AE /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA5CFD1F175CA29B002FE0AE /* Lato-BoldItalic.ttf */; };
 		EA5CFD2A175CA29B002FE0AE /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA5CFD20175CA29B002FE0AE /* Lato-Bold.ttf */; };
 		EA5CFD2B175CA29B002FE0AE /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA5CFD21175CA29B002FE0AE /* Lato-Light.ttf */; };
-		EA5CFD2F175CAB57002FE0AE /* SIAlertView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EA5CFD2E175CAB57002FE0AE /* SIAlertView.bundle */; };
 		EA5CFF12175CB6EC002FE0AE /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5CFF0C175CB6EC002FE0AE /* libzbar.a */; };
 		EA5CFF13175CB6EC002FE0AE /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5CFF0E175CB6EC002FE0AE /* zbar-back.png */; };
 		EA5CFF14175CB6EC002FE0AE /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = EA5CFF0F175CB6EC002FE0AE /* zbar-help.html */; };
@@ -64,8 +69,6 @@
 		EA87DA481734FA420073AD82 /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA87DA471734FA420073AD82 /* ConnectViewController.m */; };
 		EA87DA531734FAAB0073AD82 /* MobilSignClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA87DA521734FAAB0073AD82 /* MobilSignClient.m */; };
 		EA87DA56173521270073AD82 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA87DA55173521270073AD82 /* QRCodeViewController.m */; };
-		EA87DA58173539FE0073AD82 /* key_57.png in Resources */ = {isa = PBXBuildFile; fileRef = EA87DA57173539FE0073AD82 /* key_57.png */; };
-		EA87DA5A17353A010073AD82 /* key_114.png in Resources */ = {isa = PBXBuildFile; fileRef = EA87DA5917353A010073AD82 /* key_114.png */; };
 		EAB7E14217365E1000794C9D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB7E14117365E1000794C9D /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,9 +77,19 @@
 		EA08B5FF18166589000CB080 /* NSData+SHA1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SHA1.m"; sourceTree = "<group>"; };
 		EA08B602181665E4000CB080 /* NSString+SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SHA1.h"; sourceTree = "<group>"; };
 		EA08B603181665E4000CB080 /* NSString+SHA1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SHA1.m"; sourceTree = "<group>"; };
+		EA2B01921826705B008DD366 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		EA2B01941826716D008DD366 /* PasscodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasscodeViewController.h; sourceTree = "<group>"; };
+		EA2B01951826716D008DD366 /* PasscodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasscodeViewController.m; sourceTree = "<group>"; };
+		EA2B0198182671A8008DD366 /* UIStoryboard+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+Extensions.h"; sourceTree = "<group>"; };
+		EA2B0199182671A8008DD366 /* UIStoryboard+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIStoryboard+Extensions.m"; sourceTree = "<group>"; };
+		EA2B019C182678A9008DD366 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		EA2B019D182678A9008DD366 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		EA2B019F1826798C008DD366 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		EA2B01A118267ED1008DD366 /* UIAlertView+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Extensions.h"; sourceTree = "<group>"; };
+		EA2B01A218267ED1008DD366 /* UIAlertView+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Extensions.m"; sourceTree = "<group>"; };
+		EA2B01A4182680AF008DD366 /* KeychainManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainManager.h; sourceTree = "<group>"; };
+		EA2B01A5182680AF008DD366 /* KeychainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainManager.m; sourceTree = "<group>"; };
 		EA5CFCDF175C9D73002FE0AE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		EA5CFCE1175C9FE0002FE0AE /* SIAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAlertView.h; sourceTree = "<group>"; };
-		EA5CFCE2175C9FE0002FE0AE /* SIAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIAlertView.m; sourceTree = "<group>"; };
 		EA5CFCE5175CA032002FE0AE /* UINavigationBar+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+FlatUI.h"; sourceTree = "<group>"; };
 		EA5CFCE6175CA032002FE0AE /* UITabBar+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+FlatUI.h"; sourceTree = "<group>"; };
 		EA5CFCE7175CA032002FE0AE /* UIFont+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+FlatUI.h"; sourceTree = "<group>"; };
@@ -120,7 +133,6 @@
 		EA5CFD1F175CA29B002FE0AE /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
 		EA5CFD20175CA29B002FE0AE /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		EA5CFD21175CA29B002FE0AE /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
-		EA5CFD2E175CAB57002FE0AE /* SIAlertView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SIAlertView.bundle; sourceTree = "<group>"; };
 		EA5CFEF8175CB6EC002FE0AE /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
 		EA5CFEF9175CB6EC002FE0AE /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
 		EA5CFEFA175CB6EC002FE0AE /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -175,8 +187,6 @@
 		EA87DA521734FAAB0073AD82 /* MobilSignClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobilSignClient.m; sourceTree = "<group>"; };
 		EA87DA54173521270073AD82 /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
 		EA87DA55173521270073AD82 /* QRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
-		EA87DA57173539FE0073AD82 /* key_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = key_57.png; sourceTree = "<group>"; };
-		EA87DA5917353A010073AD82 /* key_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = key_114.png; sourceTree = "<group>"; };
 		EAB7E14117365E1000794C9D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -185,6 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA2B01A01826798C008DD366 /* Security.framework in Frameworks */,
 				EA5CFF20175CBC78002FE0AE /* CoreVideo.framework in Frameworks */,
 				EA5CFF1E175CB75E002FE0AE /* libiconv.dylib in Frameworks */,
 				EA5CFF1C175CB746002FE0AE /* CoreAudio.framework in Frameworks */,
@@ -212,6 +223,26 @@
 				EA08B603181665E4000CB080 /* NSString+SHA1.m */,
 			);
 			name = SHA1;
+			sourceTree = "<group>";
+		};
+		EA2B019718267183008DD366 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				EA2B0198182671A8008DD366 /* UIStoryboard+Extensions.h */,
+				EA2B0199182671A8008DD366 /* UIStoryboard+Extensions.m */,
+				EA2B01A118267ED1008DD366 /* UIAlertView+Extensions.h */,
+				EA2B01A218267ED1008DD366 /* UIAlertView+Extensions.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		EA2B019B18267892008DD366 /* Keychain wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				EA2B019C182678A9008DD366 /* KeychainItemWrapper.h */,
+				EA2B019D182678A9008DD366 /* KeychainItemWrapper.m */,
+			);
+			name = "Keychain wrapper";
 			sourceTree = "<group>";
 		};
 		EA5CFCE4175CA01E002FE0AE /* FlatUIKit */ = {
@@ -276,16 +307,6 @@
 				EA5CFD13175CA124002FE0AE /* UIColor+MLPFlatColors.m */,
 			);
 			name = MLPFlatColors;
-			sourceTree = "<group>";
-		};
-		EA5CFD2D175CA8E7002FE0AE /* SIAlertView */ = {
-			isa = PBXGroup;
-			children = (
-				EA5CFD2E175CAB57002FE0AE /* SIAlertView.bundle */,
-				EA5CFCE1175C9FE0002FE0AE /* SIAlertView.h */,
-				EA5CFCE2175C9FE0002FE0AE /* SIAlertView.m */,
-			);
-			name = SIAlertView;
 			sourceTree = "<group>";
 		};
 		EA5CFEF4175CB6EC002FE0AE /* ZBarSDK */ = {
@@ -364,8 +385,6 @@
 		EA87DA1F1734FA420073AD82 = {
 			isa = PBXGroup;
 			children = (
-				EA87DA5917353A010073AD82 /* key_114.png */,
-				EA87DA57173539FE0073AD82 /* key_57.png */,
 				EA87DA311734FA420073AD82 /* MobilSign */,
 				EA87DA2A1734FA420073AD82 /* Frameworks */,
 				EA87DA291734FA420073AD82 /* Products */,
@@ -383,6 +402,7 @@
 		EA87DA2A1734FA420073AD82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA2B019F1826798C008DD366 /* Security.framework */,
 				EA5CFF1D175CB75E002FE0AE /* libiconv.dylib */,
 				EA5CFF1F175CBC78002FE0AE /* CoreVideo.framework */,
 				EA5CFF1B175CB746002FE0AE /* CoreAudio.framework */,
@@ -404,6 +424,7 @@
 				EA87DA501734FA630073AD82 /* Controller */,
 				EA87DA4F1734FA5D0073AD82 /* View */,
 				EA87DA4E1734FA580073AD82 /* Model */,
+				EA2B019718267183008DD366 /* Categories */,
 				EA87DA321734FA420073AD82 /* Supporting Files */,
 			);
 			path = MobilSign;
@@ -412,10 +433,10 @@
 		EA87DA321734FA420073AD82 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EA2B019B18267892008DD366 /* Keychain wrapper */,
 				EA75D5D4181FBCD300A3A903 /* Base64 */,
 				EA08B601181665C2000CB080 /* SHA1 */,
 				EA5CFEF4175CB6EC002FE0AE /* ZBarSDK */,
-				EA5CFD2D175CA8E7002FE0AE /* SIAlertView */,
 				EA5CFD2C175CA8D7002FE0AE /* MLPFlatColors */,
 				EA5CFCE4175CA01E002FE0AE /* FlatUIKit */,
 				EA87DA3A1734FA420073AD82 /* AppDelegate.h */,
@@ -444,6 +465,7 @@
 			isa = PBXGroup;
 			children = (
 				EA87DA431734FA420073AD82 /* MainStoryboard.storyboard */,
+				EA2B01921826705B008DD366 /* Images.xcassets */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -451,12 +473,16 @@
 		EA87DA501734FA630073AD82 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EA2B01941826716D008DD366 /* PasscodeViewController.h */,
+				EA2B01951826716D008DD366 /* PasscodeViewController.m */,
 				EA87DA461734FA420073AD82 /* ConnectViewController.h */,
 				EA87DA471734FA420073AD82 /* ConnectViewController.m */,
 				EA87DA54173521270073AD82 /* QRCodeViewController.h */,
 				EA87DA55173521270073AD82 /* QRCodeViewController.m */,
 				EA5CFF21175CD178002FE0AE /* PairedViewController.h */,
 				EA5CFF22175CD178002FE0AE /* PairedViewController.m */,
+				EA2B01A4182680AF008DD366 /* KeychainManager.h */,
+				EA2B01A5182680AF008DD366 /* KeychainManager.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -516,12 +542,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA87DA361734FA420073AD82 /* InfoPlist.strings in Resources */,
+				EA2B01931826705B008DD366 /* Images.xcassets in Resources */,
 				EA87DA3E1734FA420073AD82 /* Default.png in Resources */,
 				EA87DA401734FA420073AD82 /* Default@2x.png in Resources */,
 				EA87DA421734FA420073AD82 /* Default-568h@2x.png in Resources */,
 				EA87DA451734FA420073AD82 /* MainStoryboard.storyboard in Resources */,
-				EA87DA58173539FE0073AD82 /* key_57.png in Resources */,
-				EA87DA5A17353A010073AD82 /* key_114.png in Resources */,
 				EA5CFD22175CA29B002FE0AE /* Lato-HairlineItalic.ttf in Resources */,
 				EA5CFD23175CA29B002FE0AE /* Lato-LightItalic.ttf in Resources */,
 				EA5CFD24175CA29B002FE0AE /* Lato-BlackItalic.ttf in Resources */,
@@ -532,7 +557,6 @@
 				EA5CFD29175CA29B002FE0AE /* Lato-BoldItalic.ttf in Resources */,
 				EA5CFD2A175CA29B002FE0AE /* Lato-Bold.ttf in Resources */,
 				EA5CFD2B175CA29B002FE0AE /* Lato-Light.ttf in Resources */,
-				EA5CFD2F175CAB57002FE0AE /* SIAlertView.bundle in Resources */,
 				EA5CFF13175CB6EC002FE0AE /* zbar-back.png in Resources */,
 				EA5CFF14175CB6EC002FE0AE /* zbar-help.html in Resources */,
 				EA5CFF15175CB6EC002FE0AE /* zbar-helpicons.png in Resources */,
@@ -548,18 +572,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA87DA381734FA420073AD82 /* main.m in Sources */,
+				EA2B019E182678A9008DD366 /* KeychainItemWrapper.m in Sources */,
 				EA87DA3C1734FA420073AD82 /* AppDelegate.m in Sources */,
 				EA87DA481734FA420073AD82 /* ConnectViewController.m in Sources */,
 				EA87DA531734FAAB0073AD82 /* MobilSignClient.m in Sources */,
 				EA87DA56173521270073AD82 /* QRCodeViewController.m in Sources */,
-				EA5CFCE3175C9FE0002FE0AE /* SIAlertView.m in Sources */,
 				EA5CFD03175CA032002FE0AE /* UITabBar+FlatUI.m in Sources */,
 				EA5CFD04175CA032002FE0AE /* UIProgressView+FlatUI.m in Sources */,
 				EA5CFD05175CA032002FE0AE /* UINavigationBar+FlatUI.m in Sources */,
 				EA5CFD06175CA032002FE0AE /* UIFont+FlatUI.m in Sources */,
 				EA5CFD07175CA032002FE0AE /* UISlider+FlatUI.m in Sources */,
+				EA2B01A318267ED1008DD366 /* UIAlertView+Extensions.m in Sources */,
 				EA75D5D7181FBD0700A3A903 /* NSData+Base64.m in Sources */,
 				EA5CFD08175CA032002FE0AE /* UITableViewCell+FlatUI.m in Sources */,
+				EA2B01961826716D008DD366 /* PasscodeViewController.m in Sources */,
 				EA5CFD09175CA032002FE0AE /* UIStepper+FlatUI.m in Sources */,
 				EA5CFD0A175CA032002FE0AE /* FUIButton.m in Sources */,
 				EA5CFD0B175CA032002FE0AE /* UIColor+FlatUI.m in Sources */,
@@ -572,7 +598,9 @@
 				EA5CFD14175CA124002FE0AE /* UIColor+MLPFlatColors.m in Sources */,
 				EA5CFF23175CD178002FE0AE /* PairedViewController.m in Sources */,
 				EA08B60018166589000CB080 /* NSData+SHA1.m in Sources */,
+				EA2B019A182671A8008DD366 /* UIStoryboard+Extensions.m in Sources */,
 				EA08B604181665E4000CB080 /* NSString+SHA1.m in Sources */,
+				EA2B01A6182680AF008DD366 /* KeychainManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,6 +685,8 @@
 		EA87DA4C1734FA420073AD82 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobilSign/MobilSign-Prefix.pch";
 				INFOPLIST_FILE = "MobilSign/MobilSign-Info.plist";
@@ -674,6 +704,8 @@
 		EA87DA4D1734FA420073AD82 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobilSign/MobilSign-Prefix.pch";
 				INFOPLIST_FILE = "MobilSign/MobilSign-Info.plist";

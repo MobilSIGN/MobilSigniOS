@@ -7,7 +7,6 @@
 //
 
 #import "QRCodeViewController.h"
-#import "SIAlertView.h"
 #import "UIColor+MLPFlatColors.h"
 #import "UIFont+FlatUI.h"
 #import "PairedViewController.h"
@@ -16,23 +15,58 @@
 
 @interface QRCodeViewController ()
 
-@property (strong, nonatomic) MobilSignClient *client;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
-@property (nonatomic) BOOL dismiss;
-@property (nonatomic, strong) SIAlertView *errorAlert;
+@property (strong, nonatomic) UIActivityIndicatorView *spinner;
+@property (nonatomic, strong) UIAlertView *errorAlert;
 @property (weak, nonatomic) IBOutlet ZBarReaderView *readerView;
-@property (weak, nonatomic) IBOutlet UILabel *connectingLabel;
-@property (weak, nonatomic) IBOutlet UITextView *scanTextView;
+
+@property (nonatomic) BOOL dismiss;
+@property (nonatomic) BOOL visible;
 
 @end
 
 @implementation QRCodeViewController
 
-- (SIAlertView *)errorAlert
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.spinner.hidesWhenStopped = YES;
+    [self.spinner startAnimating];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.spinner];
+    
+    self.readerView.readerDelegate = self;
+    self.readerView.torchMode = 0;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.visible = YES;
+    
+    if (self.dismiss) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self connect];
+        
+        [self.readerView start];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.visible = NO;
+    
+    [self.readerView stop];
+}
+
+- (UIAlertView *)errorAlert
 {
     if (!_errorAlert) {
-        _errorAlert = [[SIAlertView alloc] initWithTitle:@"MobilSign" andMessage:@"Connection error occured!\nPlease try again later."];
-        [_errorAlert addButtonWithTitle:@"Ok" type:SIAlertViewButtonTypeDestructive handler:nil];
+        _errorAlert = [[UIAlertView alloc] initWithTitle:@"MobilSign"
+                                                 message:@"Connection error occured!\nPlease try again later."
+                                                delegate:nil
+                                       cancelButtonTitle:@"Ok"
+                                       otherButtonTitles:nil];
     }
     return _errorAlert;
 }
@@ -42,17 +76,9 @@
     if (self.address && self.address.length > 0) {
         [self.spinner startAnimating];
         
-        [self.client setupConnection];
+        [MobilSignClient sharedClient].delegate = self;
+        [[MobilSignClient sharedClient] setupConnectionWithAddress:self.address];
     }
-}
-
-- (MobilSignClient *)client
-{
-    if (!_client) {
-        _client = [[MobilSignClient alloc] initWithAddress:self.address];
-        _client.delegate = self;
-    }
-    return _client;
 }
 
 #pragma mark - MobilSignClientDelegate
@@ -64,9 +90,10 @@
 
 - (void)openCompleted
 {
+    self.title = @"Pairing";
     [self.spinner stopAnimating];
-    [self.connectingLabel setHidden:YES];
-    [self.scanTextView setHidden:NO];
+    
+    [self.spinner stopAnimating];
     [self.readerView setHidden:NO];
     
     [self performSelector:@selector(sendTestMessage) withObject:nil afterDelay:1.0];
@@ -75,80 +102,45 @@
 - (void)sendTestMessage
 {
     NSLog(@"Test message.");
-    [self.client sendMessage:@"message\n"];
+    [[MobilSignClient sharedClient] sendMessage:@"message\n"];
 }
 
 
 - (void)connectionClosed
 {
-    self.dismiss = YES;
     [self.spinner stopAnimating];
     
-    [self showAlert:@"Connection to server closed!"];
+    [UIAlertView show:@"Connection to server closed!"];
     
-    NSLog(@"NC: %@", self.navigationController);
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    if (self.visible) {
+        self.visible = NO;
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+    self.dismiss = YES;
 }
 
 - (void)errorOccurred
 {
-    self.dismiss = YES;
     [self.spinner stopAnimating];
     
     [self.errorAlert show];
     
-    NSLog(@"NC: %@", self.navigationController);
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    if (self.visible) {
+        self.visible = NO;
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+    self.dismiss = YES;
 }
 
 - (void)didPair
 {
-    PairedViewController *pairedVC = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"PairedViewController"];
-    pairedVC.client = self.client;
-    pairedVC.client.delegate = pairedVC;
+    PairedViewController *pairedVC = (PairedViewController *)[UIStoryboard viewControllerWithIdentifier:@"PairedViewController"];
+    [MobilSignClient sharedClient].delegate = pairedVC;
     
     [self.navigationController pushViewController:pairedVC animated:YES];
     
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    self.readerView.readerDelegate = self;
-    self.readerView.torchMode = 0;
-    
-    self.view.backgroundColor = [UIColor flatWhiteColor];
-
-    self.spinner.color = [UIColor flatDarkBlueColor];
-
-    self.connectingLabel.font = [UIFont boldFlatFontOfSize:[UIFont labelFontSize]];
-    self.connectingLabel.textColor = [UIColor flatDarkBlueColor];
-    
-    self.scanTextView.font = [UIFont boldFlatFontOfSize:[UIFont labelFontSize]];
-    self.scanTextView.textColor = [UIColor flatDarkBlueColor];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    if (self.dismiss) {
-        NSLog(@"NC: %@", self.navigationController);
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    } else {
-        [self.readerView start];
-    }
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [self.readerView stop];
-}
-
-- (void)showAlert:(NSString *)alert
-{
-    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"MobilSign" andMessage:alert];
-    [alertView addButtonWithTitle:@"Ok" type:SIAlertViewButtonTypeDestructive handler:nil];
-    [alertView show];
 }
 
 - (void)readerView:(ZBarReaderView *)view didReadSymbols:(ZBarSymbolSet *)syms fromImage:(UIImage *)img
@@ -159,8 +151,8 @@
             NSLog(@"Long long value: %lld", key);
             NSString *fingerprint = [sym.data SHA1];
             [self.readerView stop];
-            [self.client pairWithFingerprint:fingerprint];
-            [self showAlert:[NSString stringWithFormat:@"Pairing with key fingerprint:\n%@", fingerprint]];
+            [[MobilSignClient sharedClient] pairWithFingerprint:fingerprint];
+            [UIAlertView show:[NSString stringWithFormat:@"Pairing with key fingerprint:\n%@", fingerprint]];
             break;
         }
     }

@@ -22,9 +22,12 @@
 
 @property (nonatomic, retain) id <MobilSignClientDelegate> delegate;
 
-- (id)initWithAddress:(NSString *)address;
-- (void)setupConnection;
++ (MobilSignClient *)sharedClient;
+
+- (void)setupConnectionWithAddress:(NSString *)address;
 - (void)sendMessage:(NSString *)message;
 - (void)pairWithFingerprint:(NSString *)fingerprint;
+
+- (void)close;
 
 @end

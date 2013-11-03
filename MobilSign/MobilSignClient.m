@@ -14,58 +14,41 @@
 
 @property (nonatomic, strong) NSInputStream *inputStream;
 @property (nonatomic, strong) NSOutputStream *outputStream;
-@property (nonatomic, strong) NSString *address;
 
 @end
 
 @implementation MobilSignClient
 
-- (id)initWithAddress:(NSString *)address
++ (MobilSignClient *)sharedClient
 {
-    self = [super init];
-    if (self) {
-        self.address = address;
-    }
-    return self;
+    static dispatch_once_t once;
+    static id sharedManager;
+    dispatch_once(&once, ^{
+        sharedManager = [[MobilSignClient alloc] init];
+    });
+    return sharedManager;
 }
 
-- (void)setupConnection
+- (void)setupConnectionWithAddress:(NSString *)address
 {
-    if (self.address) {
+    if (address) {
         
-        NSLog(@"setup");
+        CFReadStreamRef readStream;
+        CFWriteStreamRef writeStream;
+        CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)address, SERVER_PORT, &readStream, &writeStream);
         
-        //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            CFReadStreamRef readStream;
-            CFWriteStreamRef writeStream;
-            CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)self.address, SERVER_PORT, &readStream, &writeStream);
-            
-            NSInputStream *inputStream = (__bridge_transfer NSInputStream *)readStream;
-            NSOutputStream *outputStream = (__bridge_transfer NSOutputStream *)writeStream;
-            [inputStream setDelegate:self];
-            [outputStream setDelegate:self];
-            [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-            [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-            [inputStream open];
-            [outputStream open];
+        NSInputStream *inputStream = (__bridge_transfer NSInputStream *)readStream;
+        NSOutputStream *outputStream = (__bridge_transfer NSOutputStream *)writeStream;
+        self.inputStream = inputStream;
+        self.outputStream = outputStream;
+        [inputStream setDelegate:self];
+        [outputStream setDelegate:self];
+        [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        [inputStream open];
+        [outputStream open];
         
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.inputStream = inputStream;
-                self.outputStream = outputStream;
-            });
-        
-            // SSL
-        
-        
-//        NSDictionary *settings = [[NSDictionary alloc] initWithObjectsAndKeys:
-//         [NSNumber numberWithBool:YES], @"kCFStreamSSLAllowsExpiredCertificates",
-//         [NSNumber numberWithBool:YES], @"kCFStreamSSLAllowsExpiredRoots",
-//         [NSNumber numberWithBool:YES], @"kCFStreamSSLAllowsAnyRoot",
-//         [NSNumber numberWithBool:NO], @"kCFStreamSSLValidatesCertificateChain",
-//         [NSNull null], @"kCFStreamSSLPeerName",
-//         @"kCFStreamSocketSecurityLevelNegotiatedSSL", @"kCFStreamSSLLevel",
-//         nil ];
-
+        // SSL
         NSDictionary *settings = [[NSDictionary alloc] initWithObjectsAndKeys:
                                   [NSNumber numberWithBool:YES], kCFStreamSSLAllowsExpiredCertificates,
                                   [NSNumber numberWithBool:YES], kCFStreamSSLAllowsExpiredRoots,
@@ -78,8 +61,6 @@
         CFReadStreamSetProperty((CFReadStreamRef)inputStream, kCFStreamPropertySSLSettings, (CFTypeRef)settings);
         CFWriteStreamSetProperty((CFWriteStreamRef)outputStream, kCFStreamPropertySSLSettings, (CFTypeRef)settings);
         
-            
-        //});
     } else {
         NSLog(@"Address was not set!");
     }
@@ -97,6 +78,7 @@
             } else if (stream == self.outputStream) {
                 NSLog(@"Output stream opened");
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"Open completed.");
                     [self.delegate openCompleted];
                 });
             }
@@ -197,6 +179,12 @@
         }
     }
     NSLog(@"Unknown message: [%@]", message);
+}
+
+- (void)close
+{
+    [self.inputStream close];
+    [self.outputStream close];
 }
 
 @end
