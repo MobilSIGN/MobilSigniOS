@@ -166,11 +166,25 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="319"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lUe-kX-zmA" customClass="ZBarReaderView">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Connecting to MobilSign server, please wait." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="aFO-Lw-L3m">
+                                                    <rect key="frame" x="10" y="149" width="290" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lUe-kX-zmA" customClass="ZBarReaderView">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="319"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </view>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="lUe-kX-zmA" firstAttribute="top" secondItem="Zir-rC-zK1" secondAttribute="top" id="Cz6-0c-yUn"/>
+                                                <constraint firstAttribute="centerY" secondItem="aFO-Lw-L3m" secondAttribute="centerY" constant="-14.5" id="U5k-hD-FiD"/>
+                                                <constraint firstAttribute="centerX" secondItem="aFO-Lw-L3m" secondAttribute="centerX" constant="5" id="YlG-LF-FPO"/>
+                                                <constraint firstAttribute="centerY" secondItem="lUe-kX-zmA" secondAttribute="centerY" id="oPt-QC-flI"/>
+                                                <constraint firstItem="lUe-kX-zmA" firstAttribute="leading" secondItem="Zir-rC-zK1" secondAttribute="leading" id="rAF-ST-dRb"/>
+                                                <constraint firstAttribute="centerX" secondItem="lUe-kX-zmA" secondAttribute="centerX" id="wGy-3Y-blm"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>

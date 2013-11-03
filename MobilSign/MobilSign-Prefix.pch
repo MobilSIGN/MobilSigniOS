@@ -14,8 +14,11 @@
     #import "MobilSignClient.h"
     #import "KeychainManager.h"
     #import "NSData+Base64.h"
+    #import "NSData+AES256.h"
     #import "NSString+SHA1.h"
     #import "NSData+SHA1.h"
     #import "UIAlertView+Extensions.h"
     #import "UIStoryboard+Extensions.h"
+    #import "UIDevice+Extensions.h"
+    #import "Crypto.h"
 #endif

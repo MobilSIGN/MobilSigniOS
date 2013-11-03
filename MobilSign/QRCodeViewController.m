@@ -11,6 +11,7 @@
 #import "UIFont+FlatUI.h"
 #import "PairedViewController.h"
 #import "NSString+SHA1.h"
+#import <QuartzCore/QuartzCore.h>
 //#import "ZBarCameraSimulator.h"
 
 @interface QRCodeViewController ()
@@ -37,6 +38,11 @@
     
     self.readerView.readerDelegate = self;
     self.readerView.torchMode = 0;
+    
+    if (![UIDevice systemVersionAtLeast:7.0]) {
+        self.readerView.layer.cornerRadius = 7.0;
+        self.readerView.layer.masksToBounds = YES;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

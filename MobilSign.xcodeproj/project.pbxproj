@@ -16,6 +16,9 @@
 		EA2B01A01826798C008DD366 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2B019F1826798C008DD366 /* Security.framework */; };
 		EA2B01A318267ED1008DD366 /* UIAlertView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B01A218267ED1008DD366 /* UIAlertView+Extensions.m */; };
 		EA2B01A6182680AF008DD366 /* KeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B01A5182680AF008DD366 /* KeychainManager.m */; };
+		EA2B01AC1826B187008DD366 /* UIDevice+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B01AB1826B187008DD366 /* UIDevice+Extensions.m */; };
+		EA2B01B01826B885008DD366 /* Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B01AF1826B885008DD366 /* Crypto.m */; };
+		EA2B01B31826C349008DD366 /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B01B21826C349008DD366 /* NSData+AES256.m */; };
 		EA5CFCE0175C9D73002FE0AE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5CFCDF175C9D73002FE0AE /* QuartzCore.framework */; };
 		EA5CFD03175CA032002FE0AE /* UITabBar+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5CFCEB175CA032002FE0AE /* UITabBar+FlatUI.m */; };
 		EA5CFD04175CA032002FE0AE /* UIProgressView+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5CFCF0175CA032002FE0AE /* UIProgressView+FlatUI.m */; };
@@ -89,6 +92,12 @@
 		EA2B01A218267ED1008DD366 /* UIAlertView+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Extensions.m"; sourceTree = "<group>"; };
 		EA2B01A4182680AF008DD366 /* KeychainManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainManager.h; sourceTree = "<group>"; };
 		EA2B01A5182680AF008DD366 /* KeychainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainManager.m; sourceTree = "<group>"; };
+		EA2B01AA1826B187008DD366 /* UIDevice+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Extensions.h"; sourceTree = "<group>"; };
+		EA2B01AB1826B187008DD366 /* UIDevice+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Extensions.m"; sourceTree = "<group>"; };
+		EA2B01AE1826B885008DD366 /* Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crypto.h; sourceTree = "<group>"; };
+		EA2B01AF1826B885008DD366 /* Crypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Crypto.m; sourceTree = "<group>"; };
+		EA2B01B11826C349008DD366 /* NSData+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES256.h"; sourceTree = "<group>"; };
+		EA2B01B21826C349008DD366 /* NSData+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES256.m"; sourceTree = "<group>"; };
 		EA5CFCDF175C9D73002FE0AE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EA5CFCE5175CA032002FE0AE /* UINavigationBar+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+FlatUI.h"; sourceTree = "<group>"; };
 		EA5CFCE6175CA032002FE0AE /* UITabBar+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+FlatUI.h"; sourceTree = "<group>"; };
@@ -228,6 +237,10 @@
 		EA2B019718267183008DD366 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				EA2B01B11826C349008DD366 /* NSData+AES256.h */,
+				EA2B01B21826C349008DD366 /* NSData+AES256.m */,
+				EA2B01AA1826B187008DD366 /* UIDevice+Extensions.h */,
+				EA2B01AB1826B187008DD366 /* UIDevice+Extensions.m */,
 				EA2B0198182671A8008DD366 /* UIStoryboard+Extensions.h */,
 				EA2B0199182671A8008DD366 /* UIStoryboard+Extensions.m */,
 				EA2B01A118267ED1008DD366 /* UIAlertView+Extensions.h */,
@@ -243,6 +256,19 @@
 				EA2B019D182678A9008DD366 /* KeychainItemWrapper.m */,
 			);
 			name = "Keychain wrapper";
+			sourceTree = "<group>";
+		};
+		EA2B01AD1826B857008DD366 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				EA2B01A4182680AF008DD366 /* KeychainManager.h */,
+				EA2B01A5182680AF008DD366 /* KeychainManager.m */,
+				EA87DA511734FAAB0073AD82 /* MobilSignClient.h */,
+				EA87DA521734FAAB0073AD82 /* MobilSignClient.m */,
+				EA2B01AE1826B885008DD366 /* Crypto.h */,
+				EA2B01AF1826B885008DD366 /* Crypto.m */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 		EA5CFCE4175CA01E002FE0AE /* FlatUIKit */ = {
@@ -421,7 +447,8 @@
 		EA87DA311734FA420073AD82 /* MobilSign */ = {
 			isa = PBXGroup;
 			children = (
-				EA87DA501734FA630073AD82 /* Controller */,
+				EA2B01AD1826B857008DD366 /* Managers */,
+				EA87DA501734FA630073AD82 /* ViewControllers */,
 				EA87DA4F1734FA5D0073AD82 /* View */,
 				EA87DA4E1734FA580073AD82 /* Model */,
 				EA2B019718267183008DD366 /* Categories */,
@@ -455,8 +482,6 @@
 		EA87DA4E1734FA580073AD82 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EA87DA511734FAAB0073AD82 /* MobilSignClient.h */,
-				EA87DA521734FAAB0073AD82 /* MobilSignClient.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -470,7 +495,7 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		EA87DA501734FA630073AD82 /* Controller */ = {
+		EA87DA501734FA630073AD82 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				EA2B01941826716D008DD366 /* PasscodeViewController.h */,
@@ -481,10 +506,8 @@
 				EA87DA55173521270073AD82 /* QRCodeViewController.m */,
 				EA5CFF21175CD178002FE0AE /* PairedViewController.h */,
 				EA5CFF22175CD178002FE0AE /* PairedViewController.m */,
-				EA2B01A4182680AF008DD366 /* KeychainManager.h */,
-				EA2B01A5182680AF008DD366 /* KeychainManager.m */,
 			);
-			name = Controller;
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -575,6 +598,7 @@
 				EA2B019E182678A9008DD366 /* KeychainItemWrapper.m in Sources */,
 				EA87DA3C1734FA420073AD82 /* AppDelegate.m in Sources */,
 				EA87DA481734FA420073AD82 /* ConnectViewController.m in Sources */,
+				EA2B01B01826B885008DD366 /* Crypto.m in Sources */,
 				EA87DA531734FAAB0073AD82 /* MobilSignClient.m in Sources */,
 				EA87DA56173521270073AD82 /* QRCodeViewController.m in Sources */,
 				EA5CFD03175CA032002FE0AE /* UITabBar+FlatUI.m in Sources */,
@@ -583,6 +607,7 @@
 				EA5CFD06175CA032002FE0AE /* UIFont+FlatUI.m in Sources */,
 				EA5CFD07175CA032002FE0AE /* UISlider+FlatUI.m in Sources */,
 				EA2B01A318267ED1008DD366 /* UIAlertView+Extensions.m in Sources */,
+				EA2B01AC1826B187008DD366 /* UIDevice+Extensions.m in Sources */,
 				EA75D5D7181FBD0700A3A903 /* NSData+Base64.m in Sources */,
 				EA5CFD08175CA032002FE0AE /* UITableViewCell+FlatUI.m in Sources */,
 				EA2B01961826716D008DD366 /* PasscodeViewController.m in Sources */,
@@ -591,6 +616,7 @@
 				EA5CFD0B175CA032002FE0AE /* UIColor+FlatUI.m in Sources */,
 				EA5CFD0C175CA032002FE0AE /* UIBarButtonItem+FlatUI.m in Sources */,
 				EA5CFD0D175CA032002FE0AE /* FUISegmentedControl.m in Sources */,
+				EA2B01B31826C349008DD366 /* NSData+AES256.m in Sources */,
 				EA5CFD0E175CA032002FE0AE /* FUICellBackgroundView.m in Sources */,
 				EA5CFD0F175CA032002FE0AE /* FUISwitch.m in Sources */,
 				EA5CFD10175CA032002FE0AE /* UIImage+FlatUI.m in Sources */,

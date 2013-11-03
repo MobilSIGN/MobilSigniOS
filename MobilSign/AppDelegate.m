@@ -15,6 +15,10 @@
 {
     [ZBarReaderView class];
     
+    [Crypto generateKeyPair];
+    
+    [Crypto decryptWithPrivateKey:[Crypto encryptWithPublicKey]];
+    
     return YES;
 }
 							
