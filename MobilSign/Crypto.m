@@ -66,6 +66,61 @@ static const UInt8 privateKeyIdentifier[] = "sk.uniza.fri.MobilSign.privatekey\0
     if(privateKey) CFRelease(privateKey);
 }
 
++ (BOOL)keyPairExists
+{
+    OSStatus status = noErr;
+    
+    SecKeyRef publicKey = NULL;
+    
+    NSData * publicTag = [NSData dataWithBytes:publicKeyIdentifier
+                                        length:strlen((const char *)publicKeyIdentifier)];
+    
+    NSMutableDictionary *queryPublicKey = [[NSMutableDictionary alloc] init];
+    [queryPublicKey setObject:(__bridge id)kSecClassKey forKey:(__bridge id)kSecClass];
+    [queryPublicKey setObject:publicTag forKey:(__bridge id)kSecAttrApplicationTag];
+    [queryPublicKey setObject:(__bridge id)kSecAttrKeyTypeRSA forKey:(__bridge id)kSecAttrKeyType];
+    [queryPublicKey setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)kSecReturnRef];
+    
+    status = SecItemCopyMatching((__bridge CFDictionaryRef)queryPublicKey, (CFTypeRef *)&publicKey);
+    
+    NSLog(@"Status: %d", (int)status);
+    NSLog(@"Public key: %@", publicKey);
+    
+    if (publicKey) return YES;
+    else return NO;
+}
+
++ (void)deleteKeyPair
+{
+    OSStatus status = noErr;
+    
+    NSData *publicTag = [NSData dataWithBytes:publicKeyIdentifier
+                                       length:strlen((const char *)publicKeyIdentifier)];
+    
+    NSMutableDictionary *queryPublicKey = [[NSMutableDictionary alloc] init];
+    [queryPublicKey setObject:(__bridge id)kSecClassKey forKey:(__bridge id)kSecClass];
+    [queryPublicKey setObject:publicTag forKey:(__bridge id)kSecAttrApplicationTag];
+    [queryPublicKey setObject:(__bridge id)kSecAttrKeyTypeRSA forKey:(__bridge id)kSecAttrKeyType];
+    [queryPublicKey setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)kSecReturnRef];
+    
+    status = SecItemDelete((__bridge CFDictionaryRef)queryPublicKey);
+    
+    NSLog(@"Delete public key status: %d", (int)status);
+    
+    NSData *privateTag = [NSData dataWithBytes:privateKeyIdentifier
+                                        length:strlen((const char *)privateKeyIdentifier)];
+    
+    NSMutableDictionary *queryPrivateKey = [[NSMutableDictionary alloc] init];
+    [queryPrivateKey setObject:(__bridge id)kSecClassKey forKey:(__bridge id)kSecClass];
+    [queryPrivateKey setObject:privateTag forKey:(__bridge id)kSecAttrApplicationTag];
+    [queryPrivateKey setObject:(__bridge id)kSecAttrKeyTypeRSA forKey:(__bridge id)kSecAttrKeyType];
+    [queryPrivateKey setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)kSecReturnRef];
+    
+    status = SecItemDelete((__bridge CFDictionaryRef)queryPrivateKey);
+    
+    NSLog(@"Delete private key status: %d", (int)status);
+}
+
 + (NSData *)encryptWithPublicKey
 {
     OSStatus status = noErr;

@@ -12,12 +12,11 @@
 #import "PairedViewController.h"
 #import "NSString+SHA1.h"
 #import <QuartzCore/QuartzCore.h>
-//#import "ZBarCameraSimulator.h"
 
 @interface QRCodeViewController ()
 
 @property (strong, nonatomic) UIActivityIndicatorView *spinner;
-@property (nonatomic, strong) UIAlertView *errorAlert;
+@property (strong, nonatomic) UIAlertView *errorAlert;
 @property (weak, nonatomic) IBOutlet ZBarReaderView *readerView;
 
 @property (nonatomic) BOOL dismiss;
@@ -68,8 +67,8 @@
 - (UIAlertView *)errorAlert
 {
     if (!_errorAlert) {
-        _errorAlert = [[UIAlertView alloc] initWithTitle:@"MobilSign"
-                                                 message:@"Connection error occured!\nPlease try again later."
+        _errorAlert = [[UIAlertView alloc] initWithTitle:@"Can't connect to server"
+                                                 message:@"Please, chceck server address or try again later."
                                                 delegate:nil
                                        cancelButtonTitle:@"Ok"
                                        otherButtonTitles:nil];
@@ -111,7 +110,6 @@
     [[MobilSignClient sharedClient] sendMessage:@"message\n"];
 }
 
-
 - (void)connectionClosed
 {
     [self.spinner stopAnimating];
@@ -146,7 +144,6 @@
     [MobilSignClient sharedClient].delegate = pairedVC;
     
     [self.navigationController pushViewController:pairedVC animated:YES];
-    
 }
 
 - (void)readerView:(ZBarReaderView *)view didReadSymbols:(ZBarSymbolSet *)syms fromImage:(UIImage *)img

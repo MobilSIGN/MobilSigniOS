@@ -261,6 +261,8 @@
 		EA2B01AD1826B857008DD366 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				EA87DA3A1734FA420073AD82 /* AppDelegate.h */,
+				EA87DA3B1734FA420073AD82 /* AppDelegate.m */,
 				EA2B01A4182680AF008DD366 /* KeychainManager.h */,
 				EA2B01A5182680AF008DD366 /* KeychainManager.m */,
 				EA87DA511734FAAB0073AD82 /* MobilSignClient.h */,
@@ -466,8 +468,6 @@
 				EA5CFEF4175CB6EC002FE0AE /* ZBarSDK */,
 				EA5CFD2C175CA8D7002FE0AE /* MLPFlatColors */,
 				EA5CFCE4175CA01E002FE0AE /* FlatUIKit */,
-				EA87DA3A1734FA420073AD82 /* AppDelegate.h */,
-				EA87DA3B1734FA420073AD82 /* AppDelegate.m */,
 				EA87DA331734FA420073AD82 /* MobilSign-Info.plist */,
 				EA87DA341734FA420073AD82 /* InfoPlist.strings */,
 				EA87DA371734FA420073AD82 /* main.m */,

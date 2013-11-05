@@ -15,9 +15,23 @@
 {
     [ZBarReaderView class];
     
-    [Crypto generateKeyPair];
-    
-    [Crypto decryptWithPrivateKey:[Crypto encryptWithPublicKey]];
+    // Keychain item are not removed when app is uninstalled from device, so we have to remove key pair on first run.
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FirstRun"]) {
+        [Crypto deleteKeyPair];
+        
+        [[NSUserDefaults standardUserDefaults] setValue:@"NO" forKey:@"FirstRun"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+   
+//    NSLog(@"Alredy exists?");
+//    [Crypto keyPairExists];
+//    //[Crypto decryptWithPrivateKey:[Crypto encryptWithPublicKey]];
+//    NSLog(@"Delete keypair.");
+//    [Crypto deleteKeyPair];
+//    [Crypto keyPairExists];
+//    NSLog(@"Generate new one.");
+//    [Crypto generateKeyPair];
+//    [Crypto keyPairExists];
     
     return YES;
 }

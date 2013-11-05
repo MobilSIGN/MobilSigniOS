@@ -11,7 +11,9 @@
 
 @interface Crypto : NSObject
 
++ (BOOL)keyPairExists;
 + (void)generateKeyPair;
++ (void)deleteKeyPair;
 + (NSData *)encryptWithPublicKey;
 + (void)decryptWithPrivateKey:(NSData *)dataToDecrypt;
 

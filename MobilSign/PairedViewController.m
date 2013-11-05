@@ -23,8 +23,8 @@
 - (UIAlertView *)errorAlert
 {
     if (!_errorAlert) {
-        _errorAlert = [[UIAlertView alloc] initWithTitle:@"MobilSign"
-                                                 message:@"Connection error occured!\nPlease try again later."
+        _errorAlert = [[UIAlertView alloc] initWithTitle:@"Can't connect to server"
+                                                 message:@"Please, chceck server address or try again later."
                                                 delegate:nil
                                        cancelButtonTitle:@"Ok"
                                        otherButtonTitles:nil];
