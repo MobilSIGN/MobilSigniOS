@@ -14,7 +14,13 @@
 + (BOOL)keyPairExists;
 + (void)generateKeyPair;
 + (void)deleteKeyPair;
-+ (NSData *)encryptWithPublicKey;
-+ (void)decryptWithPrivateKey:(NSData *)dataToDecrypt;
+
++ (NSData *)encryptWithPublicKey:(NSString *)text;
++ (NSString *)decryptWithPrivateKey:(NSData *)data;
+
++ (void)saveCommunicationKey:(NSData *)modulus;
+
++ (NSData *)encryptWithCommunicationKey:(NSString *)text;
++ (NSString *)decryptWithCommunicationKey:(NSData *)data;
 
 @end

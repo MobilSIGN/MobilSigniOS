@@ -73,6 +73,10 @@
 		EA87DA531734FAAB0073AD82 /* MobilSignClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA87DA521734FAAB0073AD82 /* MobilSignClient.m */; };
 		EA87DA56173521270073AD82 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA87DA55173521270073AD82 /* QRCodeViewController.m */; };
 		EAB7E14217365E1000794C9D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB7E14117365E1000794C9D /* CFNetwork.framework */; };
+		EAD2B2DF183375F200D8B290 /* SecKeyWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD2B2DE183375F200D8B290 /* SecKeyWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EAD2B2E218337A4E00D8B290 /* CryptoUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD2B2E118337A4E00D8B290 /* CryptoUtil.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EAD2B2E518337CF100D8B290 /* KeychainUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD2B2E418337CF100D8B290 /* KeychainUtil.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EAD2B2E918337D0B00D8B290 /* Stopwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD2B2E818337D0B00D8B290 /* Stopwatch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -197,6 +201,15 @@
 		EA87DA54173521270073AD82 /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
 		EA87DA55173521270073AD82 /* QRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
 		EAB7E14117365E1000794C9D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		EAD2B2DD183375F200D8B290 /* SecKeyWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecKeyWrapper.h; sourceTree = "<group>"; };
+		EAD2B2DE183375F200D8B290 /* SecKeyWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecKeyWrapper.m; sourceTree = "<group>"; };
+		EAD2B2E018337A4E00D8B290 /* CryptoUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CryptoUtil.h; sourceTree = "<group>"; };
+		EAD2B2E118337A4E00D8B290 /* CryptoUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CryptoUtil.m; sourceTree = "<group>"; };
+		EAD2B2E318337CF100D8B290 /* KeychainUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainUtil.h; sourceTree = "<group>"; };
+		EAD2B2E418337CF100D8B290 /* KeychainUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainUtil.m; sourceTree = "<group>"; };
+		EAD2B2E618337D0B00D8B290 /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
+		EAD2B2E718337D0B00D8B290 /* Stopwatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stopwatch.h; sourceTree = "<group>"; };
+		EAD2B2E818337D0B00D8B290 /* Stopwatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stopwatch.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -462,6 +475,14 @@
 		EA87DA321734FA420073AD82 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EAD2B2E618337D0B00D8B290 /* Logging.h */,
+				EAD2B2E718337D0B00D8B290 /* Stopwatch.h */,
+				EAD2B2E818337D0B00D8B290 /* Stopwatch.m */,
+				EAD2B2E318337CF100D8B290 /* KeychainUtil.h */,
+				EAD2B2E418337CF100D8B290 /* KeychainUtil.m */,
+				EAD2B2E018337A4E00D8B290 /* CryptoUtil.h */,
+				EAD2B2E118337A4E00D8B290 /* CryptoUtil.m */,
+				EAD2B2DC183375BC00D8B290 /* SecKey wrapper */,
 				EA2B019B18267892008DD366 /* Keychain wrapper */,
 				EA75D5D4181FBCD300A3A903 /* Base64 */,
 				EA08B601181665C2000CB080 /* SHA1 */,
@@ -508,6 +529,15 @@
 				EA5CFF22175CD178002FE0AE /* PairedViewController.m */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		EAD2B2DC183375BC00D8B290 /* SecKey wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				EAD2B2DD183375F200D8B290 /* SecKeyWrapper.h */,
+				EAD2B2DE183375F200D8B290 /* SecKeyWrapper.m */,
+			);
+			name = "SecKey wrapper";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -595,6 +625,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA87DA381734FA420073AD82 /* main.m in Sources */,
+				EAD2B2DF183375F200D8B290 /* SecKeyWrapper.m in Sources */,
 				EA2B019E182678A9008DD366 /* KeychainItemWrapper.m in Sources */,
 				EA87DA3C1734FA420073AD82 /* AppDelegate.m in Sources */,
 				EA87DA481734FA420073AD82 /* ConnectViewController.m in Sources */,
@@ -612,8 +643,10 @@
 				EA5CFD08175CA032002FE0AE /* UITableViewCell+FlatUI.m in Sources */,
 				EA2B01961826716D008DD366 /* PasscodeViewController.m in Sources */,
 				EA5CFD09175CA032002FE0AE /* UIStepper+FlatUI.m in Sources */,
+				EAD2B2E518337CF100D8B290 /* KeychainUtil.m in Sources */,
 				EA5CFD0A175CA032002FE0AE /* FUIButton.m in Sources */,
 				EA5CFD0B175CA032002FE0AE /* UIColor+FlatUI.m in Sources */,
+				EAD2B2E918337D0B00D8B290 /* Stopwatch.m in Sources */,
 				EA5CFD0C175CA032002FE0AE /* UIBarButtonItem+FlatUI.m in Sources */,
 				EA5CFD0D175CA032002FE0AE /* FUISegmentedControl.m in Sources */,
 				EA2B01B31826C349008DD366 /* NSData+AES256.m in Sources */,
@@ -622,6 +655,7 @@
 				EA5CFD10175CA032002FE0AE /* UIImage+FlatUI.m in Sources */,
 				EA5CFD11175CA032002FE0AE /* FUIAlertView.m in Sources */,
 				EA5CFD14175CA124002FE0AE /* UIColor+MLPFlatColors.m in Sources */,
+				EAD2B2E218337A4E00D8B290 /* CryptoUtil.m in Sources */,
 				EA5CFF23175CD178002FE0AE /* PairedViewController.m in Sources */,
 				EA08B60018166589000CB080 /* NSData+SHA1.m in Sources */,
 				EA2B019A182671A8008DD366 /* UIStoryboard+Extensions.m in Sources */,

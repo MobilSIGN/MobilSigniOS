@@ -67,6 +67,21 @@
     [super viewDidAppear:animated];
     
     [self.addressField becomeFirstResponder];
+    
+    //[Crypto test];
+    
+    NSString *text = @"You are mistaken. RSA is not a block cipher, so you cannot really talk about the block size of it.The output of a RSA asdfghjkl";
+    NSData *data = [text dataUsingEncoding:NSUTF8StringEncoding];
+    NSLog(@"B64 plain: %@", [data base64EncodedString]);
+    
+    NSData *encryptedData = [Crypto encryptWithPublicKey:text];
+    NSLog(@"B64 encrypted: %@", [encryptedData base64EncodedString]);
+    
+    NSString *decryptedText = [Crypto decryptWithPrivateKey:encryptedData];
+    NSData *decryptedData = [decryptedText dataUsingEncoding:NSUTF8StringEncoding];
+    NSLog(@"B64 decrypted: %@", [decryptedData base64EncodedString]);
+    
+    NSLog(@"Decrypted text: %@", decryptedText);
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

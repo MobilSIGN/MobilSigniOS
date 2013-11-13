@@ -11,7 +11,6 @@
 
 #define kPasscodeIdentifier @"passcodeIdentifier"
 #define kPasscodeExistsKey @"passcodeExists"
-#define kPasscodeHashKey (__bridge id)kSecValueData
 
 @implementation KeychainManager
 
@@ -19,7 +18,7 @@
 {
     KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:kPasscodeIdentifier accessGroup:nil];
     
-    return [[wrapper objectForKey:kPasscodeHashKey] isEqualToString:[passcode SHA1]];
+    return [[wrapper objectForKey:(__bridge id)kSecValueData] isEqualToString:[passcode SHA1]];
 }
 
 + (void)createPasscode:(NSString *)passcode

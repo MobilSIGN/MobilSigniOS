@@ -11,9 +11,7 @@
 @interface KeychainManager : NSObject
 
 + (BOOL)checkValidPasscode:(NSString *)passcode;
-
 + (void)createPasscode:(NSString *)passcode;
-
 + (BOOL)passcodeExist;
 
 @end
