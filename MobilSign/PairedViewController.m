@@ -7,11 +7,12 @@
 //
 
 #import "PairedViewController.h"
-#import "UIColor+MLPFlatColors.h"
 
 @interface PairedViewController ()
 
 @property (nonatomic, strong) UIAlertView *errorAlert;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 //@property (nonatomic) BOOL visible;
 //@property (nonatomic) BOOL dismiss;
@@ -35,6 +36,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"Paired";
+    
+    self.navigationItem.hidesBackButton = YES;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Exit"
+                                                                              style:UIBarButtonItemStyleDone
+                                                                             target:self
+                                                                             action:@selector(exit)];
+    
+    [self.textField becomeFirstResponder];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -44,7 +55,8 @@
 
 - (void)didRecievedMessage:(NSString *)message
 {
-    
+    NSLog(@"Recieved message: %@", message);
+    self.textLabel.text = message;
 }
 
 - (void)openCompleted
@@ -69,6 +81,23 @@
 - (void)didPair
 {
 
+}
+
+- (void)exit
+{
+    [[MobilSignClient sharedClient] close];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField.text.length > 0) {
+        NSLog(@"Send: %@", textField.text);
+        [[MobilSignClient sharedClient] sendMessage:textField.text];
+        textField.text = @"";
+    }
+    
+    return NO;
 }
 
 @end

@@ -10,6 +10,13 @@
 
 #define SERVER_PORT 2002
 
+#define kRequestSend     @"SEND:"
+#define kRequestPair     @"PAIR:"
+#define kRequestEncrypt  @"ENCR:"
+#define kRequestDecrypt  @"DECR:"
+
+#define kResponse        @"RESP:"
+
 @interface MobilSignClient()
 
 @property (nonatomic, strong) NSInputStream *inputStream;
@@ -49,17 +56,17 @@
         [outputStream open];
         
         // SSL
-        NSDictionary *settings = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                  [NSNumber numberWithBool:YES], kCFStreamSSLAllowsExpiredCertificates,
-                                  [NSNumber numberWithBool:YES], kCFStreamSSLAllowsExpiredRoots,
-                                  [NSNumber numberWithBool:YES], kCFStreamSSLAllowsAnyRoot,
-                                  [NSNumber numberWithBool:NO], kCFStreamSSLValidatesCertificateChain,
-                                  [NSNull null], kCFStreamSSLPeerName,
-                                  kCFStreamSocketSecurityLevelNegotiatedSSL, kCFStreamSSLLevel,
-                                  nil ];
-        
-        CFReadStreamSetProperty((CFReadStreamRef)inputStream, kCFStreamPropertySSLSettings, (CFTypeRef)settings);
-        CFWriteStreamSetProperty((CFWriteStreamRef)outputStream, kCFStreamPropertySSLSettings, (CFTypeRef)settings);
+//        NSDictionary *settings = [[NSDictionary alloc] initWithObjectsAndKeys:
+//                                  [NSNumber numberWithBool:YES], kCFStreamSSLAllowsExpiredCertificates,
+//                                  [NSNumber numberWithBool:YES], kCFStreamSSLAllowsExpiredRoots,
+//                                  [NSNumber numberWithBool:YES], kCFStreamSSLAllowsAnyRoot,
+//                                  [NSNumber numberWithBool:NO], kCFStreamSSLValidatesCertificateChain,
+//                                  [NSNull null], kCFStreamSSLPeerName,
+//                                  kCFStreamSocketSecurityLevelNegotiatedSSL, kCFStreamSSLLevel,
+//                                  nil ];
+//        
+//        CFReadStreamSetProperty((CFReadStreamRef)inputStream, kCFStreamPropertySSLSettings, (CFTypeRef)settings);
+//        CFWriteStreamSetProperty((CFWriteStreamRef)outputStream, kCFStreamPropertySSLSettings, (CFTypeRef)settings);
         
     } else {
         NSLog(@"Address was not set!");
@@ -139,11 +146,16 @@
 
 - (void)sendMessage:(NSString *)message
 {
-    message = [NSString stringWithFormat:@"%@\n", message];
+    [self sendRequest:[NSString stringWithFormat:@"%@%@", kRequestSend, message]];
+}
+
+- (void)sendRequest:(NSString *)request
+{
+    request = [NSString stringWithFormat:@"%@\n", request];
     
     if (self.outputStream && [self.outputStream hasSpaceAvailable]) {
-        NSLog(@"Send message: %@", message);
-        NSData *data = [[NSData alloc] initWithData:[message dataUsingEncoding:NSUTF8StringEncoding]];
+        NSLog(@"Send request: %@", request);
+        NSData *data = [[NSData alloc] initWithData:[request dataUsingEncoding:NSUTF8StringEncoding]];
         [self.outputStream write:[data bytes] maxLength:[data length]];
     } else {
         if (!self.outputStream) {
@@ -157,13 +169,13 @@
 - (void)pairWithFingerprint:(NSString *)fingerprint
 {
     NSLog(@"Pairing with key fingerprint: %@", fingerprint);
-    [self sendMessage:[NSString stringWithFormat:@"PAIR:%@", fingerprint]];
+    [self sendRequest:[NSString stringWithFormat:@"%@%@", kRequestPair, fingerprint]];
 }
 
 - (void)dispatchMessage:(NSString *)message
 {
     if (message.length > 5) {
-        if ([[message substringToIndex:5] isEqualToString:@"RESP:"]) {
+        if ([[message substringToIndex:5] isEqualToString:kResponse]) {
             NSString *response = [message substringFromIndex:5];
             NSLog(@"Response: %@", response);
             
@@ -173,8 +185,22 @@
             
             return;
         }
-        if ([[message substringToIndex:5] isEqualToString:@"SEND:"]) {
+        if ([[message substringToIndex:5] isEqualToString:kRequestSend]) {
             NSLog(@"Recieved message: %@", [message substringFromIndex:5]);
+            return;
+        }
+        if ([[message substringToIndex:5] isEqualToString:kRequestEncrypt]) {
+            NSString *toEncrypt = [message substringFromIndex:5];
+            NSLog(@"Encrypt message: %@", toEncrypt);
+            [Crypto encryptWithCommunicationKey:toEncrypt];
+            return;
+        }
+        if ([[message substringToIndex:5] isEqualToString:kRequestDecrypt]) {
+            NSString *toDecrypt = [message substringFromIndex:5];
+            NSLog(@"Encrypt message: %@", toDecrypt);
+            NSString *decrypted = [Crypto decryptWithCommunicationKey:[NSData dataFromBase64String:message]];
+            NSLog(@"Decrypted: %@", decrypted);
+            [self.delegate didRecievedMessage:decrypted];
             return;
         }
     }

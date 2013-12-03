@@ -369,9 +369,9 @@ static const UInt8 communicationKeyIdentifier[] = "sk.uniza.fri.MobilSign.commun
     // GENERATING
     
     OSStatus status = noErr;
-    NSMutableDictionary *privateKeyAttr = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *publicKeyAttr = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *keyPairAttr = [[NSMutableDictionary alloc] init];
+//    NSMutableDictionary *privateKeyAttr = [[NSMutableDictionary alloc] init];
+//    NSMutableDictionary *publicKeyAttr = [[NSMutableDictionary alloc] init];
+//    NSMutableDictionary *keyPairAttr = [[NSMutableDictionary alloc] init];
     // Allocates dictionaries to be used for attributes in the SecKeyGeneratePair function.
     
     NSData * publicTag = [NSData dataWithBytes:publicKeyIdentifier length:strlen((const char *)publicKeyIdentifier)];

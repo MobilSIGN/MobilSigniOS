@@ -7,8 +7,6 @@
 //
 
 #import "QRCodeViewController.h"
-#import "UIColor+MLPFlatColors.h"
-#import "UIFont+FlatUI.h"
 #import "PairedViewController.h"
 #import "NSString+SHA1.h"
 #import <QuartzCore/QuartzCore.h>
@@ -100,14 +98,6 @@
     
     [self.spinner stopAnimating];
     [self.readerView setHidden:NO];
-    
-    [self performSelector:@selector(sendTestMessage) withObject:nil afterDelay:1.0];
-}
-
-- (void)sendTestMessage
-{
-    NSLog(@"Test message.");
-    [[MobilSignClient sharedClient] sendMessage:@"message\n"];
 }
 
 - (void)connectionClosed
@@ -157,7 +147,7 @@
             NSString *fingerprint = [sym.data SHA1];
             [self.readerView stop];
             [[MobilSignClient sharedClient] pairWithFingerprint:fingerprint];
-            [UIAlertView show:[NSString stringWithFormat:@"Pairing with key fingerprint:\n%@", fingerprint]];
+            //[UIAlertView show:[NSString stringWithFormat:@"Pairing with key fingerprint:\n%@", fingerprint]];
             break;
         }
     }

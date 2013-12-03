@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PairedViewController : UIViewController <MobilSignClientDelegate>
+@interface PairedViewController : UIViewController <UITextFieldDelegate, MobilSignClientDelegate>
 
 @end
