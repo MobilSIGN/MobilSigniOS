@@ -140,8 +140,8 @@ static SecKeyWrapper * __sharedKeyWrapper = nil;
     return self;
 }
 
-- (void)release {
-}
+//- (void)release {
+//}
 
 - (id)retain {
     return self;

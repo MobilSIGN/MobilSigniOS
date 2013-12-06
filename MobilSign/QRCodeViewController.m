@@ -140,14 +140,14 @@
 {
     for(ZBarSymbol *sym in syms) {
         if ([self checkKey:sym.data]) {
-            [Crypto saveCommunicationKey:[sym.data dataUsingEncoding:NSUTF8StringEncoding]];
-            
-            long long key = [sym.data longLongValue];
-            NSLog(@"Long long value: %lld", key);
-            NSString *fingerprint = [sym.data SHA1];
             [self.readerView stop];
-            [[MobilSignClient sharedClient] pairWithFingerprint:fingerprint];
-            //[UIAlertView show:[NSString stringWithFormat:@"Pairing with key fingerprint:\n%@", fingerprint]];
+            
+            NSData *modulus = [[NSData alloc] initWithBase64EncodedString:sym.data options:NSDataBase64DecodingIgnoreUnknownCharacters];
+            
+            [Crypto saveCommunicationKey:modulus];
+  
+            [[MobilSignClient sharedClient] pairWithFingerprint:[modulus SHA1]];
+
             break;
         }
     }

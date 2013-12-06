@@ -32,7 +32,6 @@
 		EA5CFF1E175CB75E002FE0AE /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5CFF1D175CB75E002FE0AE /* libiconv.dylib */; };
 		EA5CFF20175CBC78002FE0AE /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5CFF1F175CBC78002FE0AE /* CoreVideo.framework */; };
 		EA5CFF23175CD178002FE0AE /* PairedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5CFF22175CD178002FE0AE /* PairedViewController.m */; };
-		EA75D5D7181FBD0700A3A903 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EA75D5D6181FBD0700A3A903 /* NSData+Base64.m */; };
 		EA87DA2C1734FA420073AD82 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA87DA2B1734FA420073AD82 /* UIKit.framework */; };
 		EA87DA2E1734FA420073AD82 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA87DA2D1734FA420073AD82 /* Foundation.framework */; };
 		EA87DA301734FA420073AD82 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA87DA2F1734FA420073AD82 /* CoreGraphics.framework */; };
@@ -110,8 +109,6 @@
 		EA5CFF1F175CBC78002FE0AE /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		EA5CFF21175CD178002FE0AE /* PairedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PairedViewController.h; sourceTree = "<group>"; };
 		EA5CFF22175CD178002FE0AE /* PairedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PairedViewController.m; sourceTree = "<group>"; };
-		EA75D5D5181FBD0700A3A903 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
-		EA75D5D6181FBD0700A3A903 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		EA87DA281734FA420073AD82 /* MobilSign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobilSign.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA87DA2B1734FA420073AD82 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EA87DA2D1734FA420073AD82 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -168,6 +165,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA038B5B185251E40096C12B /* CryptoUtil */ = {
+			isa = PBXGroup;
+			children = (
+				EAD2B2E618337D0B00D8B290 /* Logging.h */,
+				EAD2B2E718337D0B00D8B290 /* Stopwatch.h */,
+				EAD2B2E818337D0B00D8B290 /* Stopwatch.m */,
+				EAD2B2E318337CF100D8B290 /* KeychainUtil.h */,
+				EAD2B2E418337CF100D8B290 /* KeychainUtil.m */,
+				EAD2B2E018337A4E00D8B290 /* CryptoUtil.h */,
+				EAD2B2E118337A4E00D8B290 /* CryptoUtil.m */,
+			);
+			name = CryptoUtil;
+			sourceTree = "<group>";
+		};
 		EA08B601181665C2000CB080 /* SHA1 */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,15 +293,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		EA75D5D4181FBCD300A3A903 /* Base64 */ = {
-			isa = PBXGroup;
-			children = (
-				EA75D5D5181FBD0700A3A903 /* NSData+Base64.h */,
-				EA75D5D6181FBD0700A3A903 /* NSData+Base64.m */,
-			);
-			name = Base64;
-			sourceTree = "<group>";
-		};
 		EA87DA1F1734FA420073AD82 = {
 			isa = PBXGroup;
 			children = (
@@ -343,16 +345,9 @@
 		EA87DA321734FA420073AD82 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EAD2B2E618337D0B00D8B290 /* Logging.h */,
-				EAD2B2E718337D0B00D8B290 /* Stopwatch.h */,
-				EAD2B2E818337D0B00D8B290 /* Stopwatch.m */,
-				EAD2B2E318337CF100D8B290 /* KeychainUtil.h */,
-				EAD2B2E418337CF100D8B290 /* KeychainUtil.m */,
-				EAD2B2E018337A4E00D8B290 /* CryptoUtil.h */,
-				EAD2B2E118337A4E00D8B290 /* CryptoUtil.m */,
+				EA038B5B185251E40096C12B /* CryptoUtil */,
 				EAD2B2DC183375BC00D8B290 /* SecKey wrapper */,
 				EA2B019B18267892008DD366 /* Keychain wrapper */,
-				EA75D5D4181FBCD300A3A903 /* Base64 */,
 				EA08B601181665C2000CB080 /* SHA1 */,
 				EA5CFEF4175CB6EC002FE0AE /* ZBarSDK */,
 				EA87DA331734FA420073AD82 /* MobilSign-Info.plist */,
@@ -490,7 +485,6 @@
 				EA87DA56173521270073AD82 /* QRCodeViewController.m in Sources */,
 				EA2B01A318267ED1008DD366 /* UIAlertView+Extensions.m in Sources */,
 				EA2B01AC1826B187008DD366 /* UIDevice+Extensions.m in Sources */,
-				EA75D5D7181FBD0700A3A903 /* NSData+Base64.m in Sources */,
 				EA2B01961826716D008DD366 /* PasscodeViewController.m in Sources */,
 				EAD2B2E518337CF100D8B290 /* KeychainUtil.m in Sources */,
 				EAD2B2E918337D0B00D8B290 /* Stopwatch.m in Sources */,
@@ -591,7 +585,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobilSign/MobilSign-Prefix.pch";
 				INFOPLIST_FILE = "MobilSign/MobilSign-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MobilSign/ZBarSDK\"",
@@ -611,7 +605,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobilSign/MobilSign-Prefix.pch";
 				INFOPLIST_FILE = "MobilSign/MobilSign-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MobilSign/ZBarSDK\"",

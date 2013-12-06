@@ -19,8 +19,9 @@
 + (NSString *)decryptWithPrivateKey:(NSData *)data;
 
 + (void)saveCommunicationKey:(NSData *)modulus;
++ (void)deleteCommunicationKey;
 
-+ (NSData *)encryptWithCommunicationKey:(NSString *)text;
-+ (NSString *)decryptWithCommunicationKey:(NSData *)data;
++ (NSData *)encryptWithCommunicationKey:(NSData *)data;
++ (NSData *)decryptWithCommunicationKey:(NSData *)data;
 
 @end

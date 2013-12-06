@@ -13,7 +13,6 @@
     #import <Foundation/Foundation.h>
     #import "MobilSignClient.h"
     #import "KeychainManager.h"
-    #import "NSData+Base64.h"
     #import "NSData+AES256.h"
     #import "NSString+SHA1.h"
     #import "NSData+SHA1.h"
@@ -21,4 +20,10 @@
     #import "UIStoryboard+Extensions.h"
     #import "UIDevice+Extensions.h"
     #import "Crypto.h"
+#endif
+
+#ifdef DEBUG
+    #define NSLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#else
+    #define NSLog(...)
 #endif

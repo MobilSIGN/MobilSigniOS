@@ -22,16 +22,6 @@
         [[NSUserDefaults standardUserDefaults] setValue:@"NO" forKey:@"FirstRun"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
-   
-//    NSLog(@"Alredy exists?");
-//    [Crypto keyPairExists];
-//    //[Crypto decryptWithPrivateKey:[Crypto encryptWithPublicKey]];
-//    NSLog(@"Delete keypair.");
-//    [Crypto deleteKeyPair];
-//    [Crypto keyPairExists];
-//    NSLog(@"Generate new one.");
-//    [Crypto generateKeyPair];
-//    [Crypto keyPairExists];
     
     return YES;
 }
