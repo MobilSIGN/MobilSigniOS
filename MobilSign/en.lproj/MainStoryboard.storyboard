@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Pwy-W3-LIo">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
@@ -24,15 +24,15 @@
         <scene sceneID="3iV-Ud-sU1">
             <objects>
                 <tableViewController storyboardIdentifier="PasscodeViewController" title="MobilSign" id="M8N-mL-qvt" customClass="PasscodeViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="HZa-Gd-vkd">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="10" sectionFooterHeight="10" id="HZa-Gd-vkd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection footerTitle="Please set your passcode to keychain. It will improve your security." id="RY1-Vc-cLM">
+                            <tableViewSection headerTitle=" " footerTitle="Please set your passcode to keychain. It will improve your security." id="RY1-Vc-cLM">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="N2f-SY-GDO">
-                                        <rect key="frame" x="0.0" y="99" width="320" height="50"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="N2f-SY-GDO">
+                                        <rect key="frame" x="0.0" y="119" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N2f-SY-GDO" id="tbL-TL-8pe">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -50,8 +50,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="62d-lS-QNi" rowHeight="50" style="IBUITableViewCellStyleDefault" id="Rye-n2-Rrf">
-                                        <rect key="frame" x="0.0" y="149" width="320" height="50"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="62d-lS-QNi" style="IBUITableViewCellStyleDefault" id="Rye-n2-Rrf">
+                                        <rect key="frame" x="0.0" y="169" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rye-n2-Rrf" id="Vh7-R5-qYL">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -90,15 +90,15 @@
         <scene sceneID="3t8-hi-RO1">
             <objects>
                 <tableViewController storyboardIdentifier="ConnectViewController" title="Server" id="hsk-Yb-Byw" customClass="ConnectViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="VxU-wd-9Ps">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="10" sectionFooterHeight="10" id="VxU-wd-9Ps">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection footerTitle="Enter MobilSign server address." id="4wt-ic-S6d">
+                            <tableViewSection headerTitle=" " footerTitle="Enter MobilSign server address." id="4wt-ic-S6d">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="But-Lq-2Cg">
-                                        <rect key="frame" x="0.0" y="99" width="320" height="50"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="But-Lq-2Cg">
+                                        <rect key="frame" x="0.0" y="119" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="But-Lq-2Cg" id="rWs-PJ-ziH">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -113,8 +113,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="d7x-3q-4le" rowHeight="50" style="IBUITableViewCellStyleDefault" id="g2X-nd-t0e">
-                                        <rect key="frame" x="0.0" y="149" width="320" height="50"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="d7x-3q-4le" style="IBUITableViewCellStyleDefault" id="g2X-nd-t0e">
+                                        <rect key="frame" x="0.0" y="169" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g2X-nd-t0e" id="IB9-K6-hcQ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -227,7 +227,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Faa-4A-vVu"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -239,7 +239,7 @@
                                     <constraint firstAttribute="height" constant="50" id="ouS-tu-iEJ"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="send"/>
                                 <connections>
                                     <outlet property="delegate" destination="vO6-7J-LEc" id="eFS-FQ-flU"/>
