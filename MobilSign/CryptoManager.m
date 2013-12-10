@@ -11,8 +11,10 @@
 #import "KeychainItemWrapper.h"
 #import <Security/Security.h>
 
-#define CIPHER_LENGTH 2048
-#define CIPHER_LENGTH_EC 256
+#define kCipherLengthRSA    2048
+#define kCipherLengthEC     256
+
+#define kBundleIdentifier   @"sk.uniza.fri.spalekm.MobilSign"
 
 #define kPasscodeIdentifier @"passcodeIdentifier"
 #define kPasscodeExistsKey  @"passcodeExists"
@@ -60,7 +62,7 @@
 + (void)createPasscode:(NSString *)passcode
 {
     KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:kPasscodeIdentifier accessGroup:nil];
-    [wrapper setObject:@"sk.uniza.fri.spalekm.MobilSign" forKey:(__bridge id)kSecAttrService];
+    [wrapper setObject:kBundleIdentifier forKey:(__bridge id)kSecAttrService];
     [wrapper setObject:[passcode SHA1] forKey:(__bridge id)kSecValueData];
     
     [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:kPasscodeExistsKey];
@@ -99,7 +101,7 @@ static const UInt8 privateKeyIdentifier[] = "sk.uniza.fri.MobilSign.privatekey\0
     
     [keyPairAttr setObject:(__bridge id)kSecAttrKeyTypeRSA forKey:(__bridge id)kSecAttrKeyType];
     // Sets the key-type attribute for the key pair to RSA
-    [keyPairAttr setObject:[NSNumber numberWithInt:CIPHER_LENGTH] forKey:(__bridge id)kSecAttrKeySizeInBits];
+    [keyPairAttr setObject:[NSNumber numberWithInt:kCipherLengthRSA] forKey:(__bridge id)kSecAttrKeySizeInBits];
     // Sets the key-size attribute for the key pair to 1024 bits
     
     [privateKeyAttr setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)kSecAttrIsPermanent];
@@ -206,8 +208,8 @@ static const UInt8 privateKeyIdentifier[] = "sk.uniza.fri.MobilSign.privatekey\0
     publicKey = [self getKeyWithTag:kPublicKey];
     
     uint8_t *pPlainText = (uint8_t*)[text cStringUsingEncoding:NSUTF8StringEncoding];
-    uint8_t aCipherText[CIPHER_LENGTH];
-    size_t iCipherLength = CIPHER_LENGTH;
+    uint8_t aCipherText[kCipherLengthRSA];
+    size_t iCipherLength = kCipherLengthRSA;
     status = SecKeyEncrypt(publicKey,
                            kSecPaddingNone,
                            pPlainText,
@@ -219,7 +221,7 @@ static const UInt8 privateKeyIdentifier[] = "sk.uniza.fri.MobilSign.privatekey\0
 
     if(publicKey) CFRelease(publicKey);
     
-    return [NSData dataWithBytes:aCipherText length:CIPHER_LENGTH];
+    return [NSData dataWithBytes:aCipherText length:kCipherLengthRSA];
 }
 
 + (NSString *)decryptWithPrivateKey:(NSData *)data
@@ -244,8 +246,8 @@ static const UInt8 privateKeyIdentifier[] = "sk.uniza.fri.MobilSign.privatekey\0
     
     const uint8_t *bytes = (const uint8_t*)[data bytes];
 
-    uint8_t aPlainText[CIPHER_LENGTH_EC];
-    size_t iPlainLength = CIPHER_LENGTH_EC;
+    uint8_t aPlainText[kCipherLengthEC];
+    size_t iPlainLength = kCipherLengthEC;
     status = SecKeyDecrypt(privateKey,
                            kSecPaddingNone,
                            &bytes[0],
@@ -366,7 +368,7 @@ static const UInt8 privateKeyIdentifier[] = "sk.uniza.fri.MobilSign.privatekey\0
     
     [keyPairAttr setObject:(__bridge id)kSecAttrKeyTypeEC forKey:(__bridge id)kSecAttrKeyType];
     // Sets the key-type attribute for the key pair to RSA
-    [keyPairAttr setObject:[NSNumber numberWithInt:CIPHER_LENGTH_EC] forKey:(__bridge id)kSecAttrKeySizeInBits];
+    [keyPairAttr setObject:[NSNumber numberWithInt:kCipherLengthEC] forKey:(__bridge id)kSecAttrKeySizeInBits];
     // Sets the key-size attribute for the key pair to 1024 bits
     
     [privateKeyAttr setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)kSecAttrIsPermanent];
