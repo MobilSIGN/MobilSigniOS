@@ -11,6 +11,12 @@
 
 @interface Crypto : NSObject
 
+// Passcode verification
++ (BOOL)checkValidPasscode:(NSString *)passcode;
++ (void)createPasscode:(NSString *)passcode;
++ (BOOL)passcodeExist;
+
+// Mobile key pair
 + (BOOL)keyPairExists;
 + (void)generateKeyPair;
 + (void)deleteKeyPair;
@@ -18,6 +24,7 @@
 + (NSData *)encryptWithPublicKey:(NSString *)text;
 + (NSString *)decryptWithPrivateKey:(NSData *)data;
 
+// Communication
 + (void)saveCommunicationKey:(NSData *)modulus;
 + (void)deleteCommunicationKey;
 

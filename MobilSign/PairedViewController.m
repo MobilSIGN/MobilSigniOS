@@ -14,9 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 
-//@property (nonatomic) BOOL visible;
-//@property (nonatomic) BOOL dismiss;
-
 @end
 
 @implementation PairedViewController
@@ -46,11 +43,6 @@
                                                                              action:@selector(exit)];
     
     [self.textField becomeFirstResponder];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-//    self.visible = YES;
 }
 
 - (void)didRecievedMessage:(NSString *)message

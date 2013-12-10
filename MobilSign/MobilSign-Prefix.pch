@@ -12,7 +12,6 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "MobilSignClient.h"
-    #import "KeychainManager.h"
     #import "NSData+AES256.h"
     #import "NSString+SHA1.h"
     #import "NSData+SHA1.h"

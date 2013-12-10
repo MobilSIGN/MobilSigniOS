@@ -8,12 +8,9 @@
 
 #import "PasscodeViewController.h"
 
-
-
 @interface PasscodeViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *passcodeField;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *confirmLabel;
 
 @end
@@ -24,7 +21,7 @@
 {
     [super viewDidLoad];
 	
-    if ([KeychainManager passcodeExist]) {
+    if ([Crypto passcodeExist]) {
         self.confirmLabel.text = @"Confirm";
     }
 }
@@ -49,9 +46,9 @@
 
 - (void)passcodeButtonPressed
 {
-    if ([KeychainManager passcodeExist]) {
+    if ([Crypto passcodeExist]) {
         
-        if ([KeychainManager checkValidPasscode:self.passcodeField.text]) {
+        if ([Crypto checkValidPasscode:self.passcodeField.text]) {
             NSLog(@"Good passcode");
             
             [self.navigationController pushViewController:[UIStoryboard viewControllerWithIdentifier:@"ConnectViewController"] animated:YES];
@@ -63,7 +60,7 @@
     } else {
         NSLog(@"Create passcode");
         
-        [KeychainManager createPasscode:self.passcodeField.text];
+        [Crypto createPasscode:self.passcodeField.text];
         
         [self.navigationController pushViewController:[UIStoryboard viewControllerWithIdentifier:@"ConnectViewController"] animated:YES];
     }
@@ -88,7 +85,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    if ([KeychainManager passcodeExist]) {
+    if ([Crypto passcodeExist]) {
         return @"Please enter you passcode to keychain.";
     } else {
         return @"Please set your passcode to keychain. It will improve your security.";

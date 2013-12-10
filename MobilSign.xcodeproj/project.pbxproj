@@ -15,7 +15,6 @@
 		EA2B019E182678A9008DD366 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B019D182678A9008DD366 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA2B01A01826798C008DD366 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2B019F1826798C008DD366 /* Security.framework */; };
 		EA2B01A318267ED1008DD366 /* UIAlertView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B01A218267ED1008DD366 /* UIAlertView+Extensions.m */; };
-		EA2B01A6182680AF008DD366 /* KeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B01A5182680AF008DD366 /* KeychainManager.m */; };
 		EA2B01AC1826B187008DD366 /* UIDevice+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B01AB1826B187008DD366 /* UIDevice+Extensions.m */; };
 		EA2B01B01826B885008DD366 /* Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B01AF1826B885008DD366 /* Crypto.m */; };
 		EA2B01B31826C349008DD366 /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B01B21826C349008DD366 /* NSData+AES256.m */; };
@@ -67,8 +66,6 @@
 		EA2B019F1826798C008DD366 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EA2B01A118267ED1008DD366 /* UIAlertView+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Extensions.h"; sourceTree = "<group>"; };
 		EA2B01A218267ED1008DD366 /* UIAlertView+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Extensions.m"; sourceTree = "<group>"; };
-		EA2B01A4182680AF008DD366 /* KeychainManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainManager.h; sourceTree = "<group>"; };
-		EA2B01A5182680AF008DD366 /* KeychainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainManager.m; sourceTree = "<group>"; };
 		EA2B01AA1826B187008DD366 /* UIDevice+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Extensions.h"; sourceTree = "<group>"; };
 		EA2B01AB1826B187008DD366 /* UIDevice+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Extensions.m"; sourceTree = "<group>"; };
 		EA2B01AE1826B885008DD366 /* Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crypto.h; sourceTree = "<group>"; };
@@ -219,8 +216,6 @@
 			children = (
 				EA87DA3A1734FA420073AD82 /* AppDelegate.h */,
 				EA87DA3B1734FA420073AD82 /* AppDelegate.m */,
-				EA2B01A4182680AF008DD366 /* KeychainManager.h */,
-				EA2B01A5182680AF008DD366 /* KeychainManager.m */,
 				EA87DA511734FAAB0073AD82 /* MobilSignClient.h */,
 				EA87DA521734FAAB0073AD82 /* MobilSignClient.m */,
 				EA2B01AE1826B885008DD366 /* Crypto.h */,
@@ -494,7 +489,6 @@
 				EA08B60018166589000CB080 /* NSData+SHA1.m in Sources */,
 				EA2B019A182671A8008DD366 /* UIStoryboard+Extensions.m in Sources */,
 				EA08B604181665E4000CB080 /* NSString+SHA1.m in Sources */,
-				EA2B01A6182680AF008DD366 /* KeychainManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

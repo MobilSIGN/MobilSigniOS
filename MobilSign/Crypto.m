@@ -8,16 +8,71 @@
 
 #import "Crypto.h"
 #import "CryptoUtil.h"
+#import "KeychainItemWrapper.h"
 #import <Security/Security.h>
 
 #define CIPHER_LENGTH 2048
 #define CIPHER_LENGTH_EC 256
+
+#define kPasscodeIdentifier @"passcodeIdentifier"
+#define kPasscodeExistsKey  @"passcodeExists"
 
 #define kCommunicationKey   @"sk.uniza.fri.MobilSign.communicationkey"
 #define kPublicKey          @"sk.uniza.fri.MobilSign.publickey"
 #define kPrivateKey         @"sk.uniza.fri.MobilSign.privatekey"
 
 @implementation Crypto
+
++ (SecKeyRef)getKeyWithTag:(NSString *)tag
+{
+    OSStatus status = noErr;
+    
+    SecKeyRef key = NULL;
+    
+    UInt8 keyIdentifier[[tag length]+1];
+    memcpy(keyIdentifier, [tag UTF8String], [tag length]+1);
+    
+    NSData * keyTag = [NSData dataWithBytes:keyIdentifier
+                                     length:strlen((const char *)keyIdentifier)];
+    
+    NSMutableDictionary *queryKey = [[NSMutableDictionary alloc] init];
+    [queryKey setObject:(__bridge id)kSecClassKey forKey:(__bridge id)kSecClass];
+    [queryKey setObject:keyTag forKey:(__bridge id)kSecAttrApplicationTag];
+    [queryKey setObject:(__bridge id)kSecAttrKeyTypeRSA forKey:(__bridge id)kSecAttrKeyType];
+    [queryKey setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)kSecReturnRef];
+    
+    status = SecItemCopyMatching((__bridge CFDictionaryRef)queryKey, (CFTypeRef *)&key);
+    
+    if(status != errSecSuccess) NSAssert1(0, @"Error: failed to load key '%d'.", (int)status);
+    
+    return key;
+}
+
+#pragma mark - Passcode verification
+
++ (BOOL)checkValidPasscode:(NSString *)passcode
+{
+    KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:kPasscodeIdentifier accessGroup:nil];
+    
+    return [[wrapper objectForKey:(__bridge id)kSecValueData] isEqualToString:[passcode SHA1]];
+}
+
++ (void)createPasscode:(NSString *)passcode
+{
+    KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:kPasscodeIdentifier accessGroup:nil];
+    [wrapper setObject:@"sk.uniza.fri.spalekm.MobilSign" forKey:(__bridge id)kSecAttrService];
+    [wrapper setObject:[passcode SHA1] forKey:(__bridge id)kSecValueData];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:kPasscodeExistsKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (BOOL)passcodeExist
+{
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:kPasscodeExistsKey] boolValue];
+}
+
+#pragma mark - Mobile key pair
 
 static const UInt8 publicKeyIdentifier[] = "sk.uniza.fri.MobilSign.publickey\0";
 static const UInt8 privateKeyIdentifier[] = "sk.uniza.fri.MobilSign.privatekey\0";
@@ -203,31 +258,6 @@ static const UInt8 privateKeyIdentifier[] = "sk.uniza.fri.MobilSign.privatekey\0
     if(privateKey) CFRelease(privateKey);
     
     return  [NSString stringWithUTF8String:(char *)aPlainText];
-}
-
-+ (SecKeyRef)getKeyWithTag:(NSString *)tag
-{
-    OSStatus status = noErr;
-    
-    SecKeyRef key = NULL;
-    
-    UInt8 keyIdentifier[[tag length]+1];
-    memcpy(keyIdentifier, [tag UTF8String], [tag length]+1);
-    
-    NSData * keyTag = [NSData dataWithBytes:keyIdentifier
-                                     length:strlen((const char *)keyIdentifier)];
-    
-    NSMutableDictionary *queryKey = [[NSMutableDictionary alloc] init];
-    [queryKey setObject:(__bridge id)kSecClassKey forKey:(__bridge id)kSecClass];
-    [queryKey setObject:keyTag forKey:(__bridge id)kSecAttrApplicationTag];
-    [queryKey setObject:(__bridge id)kSecAttrKeyTypeRSA forKey:(__bridge id)kSecAttrKeyType];
-    [queryKey setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)kSecReturnRef];
-    
-    status = SecItemCopyMatching((__bridge CFDictionaryRef)queryKey, (CFTypeRef *)&key);
-    
-    if(status != errSecSuccess) NSAssert1(0, @"Error: failed to load key '%d'.", (int)status);
-    
-    return key;
 }
 
 #pragma mark - Communication

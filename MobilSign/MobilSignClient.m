@@ -55,7 +55,7 @@
         [inputStream open];
         [outputStream open];
         
-        // SSL
+        // SSL - we are not using SSL anymore
 //        NSDictionary *settings = [[NSDictionary alloc] initWithObjectsAndKeys:
 //                                  [NSNumber numberWithBool:YES], kCFStreamSSLAllowsExpiredCertificates,
 //                                  [NSNumber numberWithBool:YES], kCFStreamSSLAllowsExpiredRoots,
