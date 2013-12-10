@@ -17,7 +17,7 @@
     
     // Keychain item are not removed when app is uninstalled from device, so we have to remove key pair on first run.
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FirstRun"]) {
-        [Crypto deleteKeyPair];
+        [CryptoManager deleteKeyPair];
         
         [[NSUserDefaults standardUserDefaults] setValue:@"NO" forKey:@"FirstRun"];
         [[NSUserDefaults standardUserDefaults] synchronize];

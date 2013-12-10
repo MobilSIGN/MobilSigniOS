@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Marek Spalek. All rights reserved.
 //
 
-#import "Crypto.h"
+#import "CryptoManager.h"
 #import "CryptoUtil.h"
 #import "KeychainItemWrapper.h"
 #import <Security/Security.h>
@@ -21,7 +21,7 @@
 #define kPublicKey          @"sk.uniza.fri.MobilSign.publickey"
 #define kPrivateKey         @"sk.uniza.fri.MobilSign.privatekey"
 
-@implementation Crypto
+@implementation CryptoManager
 
 + (SecKeyRef)getKeyWithTag:(NSString *)tag
 {
@@ -285,7 +285,7 @@ static const UInt8 privateKeyIdentifier[] = "sk.uniza.fri.MobilSign.privatekey\0
 	NSData * encrypted = nil;
 	uint8_t * cipherBuffer = NULL;
 	
-    SecKeyRef communicationKey = [Crypto getKeyWithTag:kCommunicationKey];
+    SecKeyRef communicationKey = [CryptoManager getKeyWithTag:kCommunicationKey];
     
 	cipherBufferSize = SecKeyGetBlockSize(communicationKey);
 	keyBufferSize = [data length];

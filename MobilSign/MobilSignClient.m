@@ -141,7 +141,7 @@
 
 - (void)sendMessage:(NSString *)message
 {
-    NSData *data = [Crypto encryptWithCommunicationKey:[message dataUsingEncoding:NSUTF8StringEncoding]];
+    NSData *data = [CryptoManager encryptWithCommunicationKey:[message dataUsingEncoding:NSUTF8StringEncoding]];
     NSString *base64 = [data base64EncodedStringWithOptions:0];
     [self sendRequest:[NSString stringWithFormat:@"%@%@", kRequestSend, base64]];
 }
@@ -189,7 +189,7 @@
         if ([[message substringToIndex:5] isEqualToString:kRequestEncrypt]) {
             NSString *toEncrypt = [message substringFromIndex:5];
             NSLog(@"Encrypt message: %@", toEncrypt);
-            [Crypto encryptWithCommunicationKey:[[NSData alloc] initWithBase64EncodedString:toEncrypt options:NSDataBase64DecodingIgnoreUnknownCharacters]];
+            [CryptoManager encryptWithCommunicationKey:[[NSData alloc] initWithBase64EncodedString:toEncrypt options:NSDataBase64DecodingIgnoreUnknownCharacters]];
             return;
         }
         if ([[message substringToIndex:5] isEqualToString:kRequestDecrypt] || [[message substringToIndex:5] isEqualToString:kRequestSend]) {
@@ -197,7 +197,7 @@
             NSLog(@"Encrypted message: %@", toDecrypt);
             NSData *encryptedData = [[NSData alloc] initWithBase64EncodedString:toDecrypt options:NSDataBase64DecodingIgnoreUnknownCharacters];
             NSLog(@"Encrypted length: %d", encryptedData.length);
-            NSData *decryptedData = [Crypto decryptWithCommunicationKey:encryptedData];
+            NSData *decryptedData = [CryptoManager decryptWithCommunicationKey:encryptedData];
             NSLog(@"Decrypted length: %d", decryptedData.length);
             NSString *decryptedMessage = [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
             NSLog(@"Decrypted: %@", decryptedMessage);

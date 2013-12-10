@@ -18,7 +18,7 @@
     #import "UIAlertView+Extensions.h"
     #import "UIStoryboard+Extensions.h"
     #import "UIDevice+Extensions.h"
-    #import "Crypto.h"
+    #import "CryptoManager.h"
 #endif
 
 #ifdef DEBUG

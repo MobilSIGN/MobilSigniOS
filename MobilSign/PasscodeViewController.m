@@ -21,7 +21,7 @@
 {
     [super viewDidLoad];
 	
-    if ([Crypto passcodeExist]) {
+    if ([CryptoManager passcodeExist]) {
         self.confirmLabel.text = @"Confirm";
     }
 }
@@ -46,9 +46,9 @@
 
 - (void)passcodeButtonPressed
 {
-    if ([Crypto passcodeExist]) {
+    if ([CryptoManager passcodeExist]) {
         
-        if ([Crypto checkValidPasscode:self.passcodeField.text]) {
+        if ([CryptoManager checkValidPasscode:self.passcodeField.text]) {
             NSLog(@"Good passcode");
             
             [self.navigationController pushViewController:[UIStoryboard viewControllerWithIdentifier:@"ConnectViewController"] animated:YES];
@@ -60,7 +60,7 @@
     } else {
         NSLog(@"Create passcode");
         
-        [Crypto createPasscode:self.passcodeField.text];
+        [CryptoManager createPasscode:self.passcodeField.text];
         
         [self.navigationController pushViewController:[UIStoryboard viewControllerWithIdentifier:@"ConnectViewController"] animated:YES];
     }
@@ -85,7 +85,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    if ([Crypto passcodeExist]) {
+    if ([CryptoManager passcodeExist]) {
         return @"Please enter you passcode to keychain.";
     } else {
         return @"Please set your passcode to keychain. It will improve your security.";

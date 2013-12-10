@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CommonCrypto/CommonCryptor.h>
 
-@interface Crypto : NSObject
+@interface CryptoManager : NSObject
 
 // Passcode verification
 + (BOOL)checkValidPasscode:(NSString *)passcode;

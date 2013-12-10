@@ -144,7 +144,7 @@
             
             NSData *modulus = [[NSData alloc] initWithBase64EncodedString:sym.data options:NSDataBase64DecodingIgnoreUnknownCharacters];
             
-            [Crypto saveCommunicationKey:modulus];
+            [CryptoManager saveCommunicationKey:modulus];
   
             [[MobilSignClient sharedClient] pairWithFingerprint:[modulus SHA1]];
 

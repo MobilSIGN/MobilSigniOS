@@ -16,7 +16,7 @@
 		EA2B01A01826798C008DD366 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2B019F1826798C008DD366 /* Security.framework */; };
 		EA2B01A318267ED1008DD366 /* UIAlertView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B01A218267ED1008DD366 /* UIAlertView+Extensions.m */; };
 		EA2B01AC1826B187008DD366 /* UIDevice+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B01AB1826B187008DD366 /* UIDevice+Extensions.m */; };
-		EA2B01B01826B885008DD366 /* Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B01AF1826B885008DD366 /* Crypto.m */; };
+		EA2B01B01826B885008DD366 /* CryptoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B01AF1826B885008DD366 /* CryptoManager.m */; };
 		EA2B01B31826C349008DD366 /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B01B21826C349008DD366 /* NSData+AES256.m */; };
 		EA5CFCE0175C9D73002FE0AE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5CFCDF175C9D73002FE0AE /* QuartzCore.framework */; };
 		EA5CFD16175CA187002FE0AE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5CFD15175CA187002FE0AE /* CoreText.framework */; };
@@ -68,8 +68,8 @@
 		EA2B01A218267ED1008DD366 /* UIAlertView+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Extensions.m"; sourceTree = "<group>"; };
 		EA2B01AA1826B187008DD366 /* UIDevice+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Extensions.h"; sourceTree = "<group>"; };
 		EA2B01AB1826B187008DD366 /* UIDevice+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Extensions.m"; sourceTree = "<group>"; };
-		EA2B01AE1826B885008DD366 /* Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crypto.h; sourceTree = "<group>"; };
-		EA2B01AF1826B885008DD366 /* Crypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Crypto.m; sourceTree = "<group>"; };
+		EA2B01AE1826B885008DD366 /* CryptoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CryptoManager.h; sourceTree = "<group>"; };
+		EA2B01AF1826B885008DD366 /* CryptoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CryptoManager.m; sourceTree = "<group>"; };
 		EA2B01B11826C349008DD366 /* NSData+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES256.h"; sourceTree = "<group>"; };
 		EA2B01B21826C349008DD366 /* NSData+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES256.m"; sourceTree = "<group>"; };
 		EA5CFCDF175C9D73002FE0AE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -218,8 +218,8 @@
 				EA87DA3B1734FA420073AD82 /* AppDelegate.m */,
 				EA87DA511734FAAB0073AD82 /* MobilSignClient.h */,
 				EA87DA521734FAAB0073AD82 /* MobilSignClient.m */,
-				EA2B01AE1826B885008DD366 /* Crypto.h */,
-				EA2B01AF1826B885008DD366 /* Crypto.m */,
+				EA2B01AE1826B885008DD366 /* CryptoManager.h */,
+				EA2B01AF1826B885008DD366 /* CryptoManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -475,7 +475,7 @@
 				EA2B019E182678A9008DD366 /* KeychainItemWrapper.m in Sources */,
 				EA87DA3C1734FA420073AD82 /* AppDelegate.m in Sources */,
 				EA87DA481734FA420073AD82 /* ConnectViewController.m in Sources */,
-				EA2B01B01826B885008DD366 /* Crypto.m in Sources */,
+				EA2B01B01826B885008DD366 /* CryptoManager.m in Sources */,
 				EA87DA531734FAAB0073AD82 /* MobilSignClient.m in Sources */,
 				EA87DA56173521270073AD82 /* QRCodeViewController.m in Sources */,
 				EA2B01A318267ED1008DD366 /* UIAlertView+Extensions.m in Sources */,
