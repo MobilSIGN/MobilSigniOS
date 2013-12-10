@@ -1,6 +1,6 @@
 //
 //  UIDevice+Extensions.h
-//  OrderingSystem
+//  MobilSign
 //
 //  Created by Marek Spalek on 21. 08. 13.
 //  Copyright (c) 2013 Marek Spalek. All rights reserved.

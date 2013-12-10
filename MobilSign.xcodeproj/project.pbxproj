@@ -190,6 +190,7 @@
 		EA2B019718267183008DD366 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				EA08B601181665C2000CB080 /* SHA1 */,
 				EA2B01B11826C349008DD366 /* NSData+AES256.h */,
 				EA2B01B21826C349008DD366 /* NSData+AES256.m */,
 				EA2B01AA1826B187008DD366 /* UIDevice+Extensions.h */,
@@ -328,9 +329,9 @@
 			isa = PBXGroup;
 			children = (
 				EA2B01AD1826B857008DD366 /* Managers */,
-				EA87DA501734FA630073AD82 /* ViewControllers */,
 				EA87DA4F1734FA5D0073AD82 /* View */,
-				EA87DA4E1734FA580073AD82 /* Model */,
+				EA87DA501734FA630073AD82 /* ViewControllers */,
+				EA87DA4E1734FA580073AD82 /* External resources */,
 				EA2B019718267183008DD366 /* Categories */,
 				EA87DA321734FA420073AD82 /* Supporting Files */,
 			);
@@ -340,11 +341,6 @@
 		EA87DA321734FA420073AD82 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EA038B5B185251E40096C12B /* CryptoUtil */,
-				EAD2B2DC183375BC00D8B290 /* SecKey wrapper */,
-				EA2B019B18267892008DD366 /* Keychain wrapper */,
-				EA08B601181665C2000CB080 /* SHA1 */,
-				EA5CFEF4175CB6EC002FE0AE /* ZBarSDK */,
 				EA87DA331734FA420073AD82 /* MobilSign-Info.plist */,
 				EA87DA341734FA420073AD82 /* InfoPlist.strings */,
 				EA87DA371734FA420073AD82 /* main.m */,
@@ -356,11 +352,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		EA87DA4E1734FA580073AD82 /* Model */ = {
+		EA87DA4E1734FA580073AD82 /* External resources */ = {
 			isa = PBXGroup;
 			children = (
+				EA5CFEF4175CB6EC002FE0AE /* ZBarSDK */,
+				EA038B5B185251E40096C12B /* CryptoUtil */,
+				EAD2B2DC183375BC00D8B290 /* SecKey wrapper */,
+				EA2B019B18267892008DD366 /* Keychain wrapper */,
 			);
-			name = Model;
+			name = "External resources";
 			sourceTree = "<group>";
 		};
 		EA87DA4F1734FA5D0073AD82 /* View */ = {

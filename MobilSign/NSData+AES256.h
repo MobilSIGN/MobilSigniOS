@@ -1,6 +1,6 @@
 //
 //  NSData+AES256.h
-//  RSATest
+//  MobilSign
 //
 //  Created by Marek Spalek on 11/7/12.
 //  Copyright (c) 2012 Marek Spalek. All rights reserved.

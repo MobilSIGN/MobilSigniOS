@@ -8,7 +8,7 @@
 
 #import "MobilSignClient.h"
 
-#define SERVER_PORT 2002
+#define kServerPort 2002
 
 #define kRequestSend     @"SEND:"
 #define kRequestPair     @"PAIR:"
@@ -42,7 +42,7 @@
         
         CFReadStreamRef readStream;
         CFWriteStreamRef writeStream;
-        CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)address, SERVER_PORT, &readStream, &writeStream);
+        CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)address, kServerPort, &readStream, &writeStream);
         
         NSInputStream *inputStream = (__bridge_transfer NSInputStream *)readStream;
         NSOutputStream *outputStream = (__bridge_transfer NSOutputStream *)writeStream;

@@ -1,6 +1,6 @@
 //
 //  UIStoryboard+Extensions.h
-//  Bioveta
+//  MobilSign
 //
 //  Created by Marek Spalek on 27. 10. 13.
 //  Copyright (c) 2013 Marek Spalek. All rights reserved.

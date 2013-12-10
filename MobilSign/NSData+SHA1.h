@@ -1,6 +1,6 @@
 //
 //  NSData+SHA1.h
-//  TrashOut
+//  MobilSign
 //
 //  Created by Marek Spalek on 8/9/12.
 //  Copyright (c) 2012 Marek Spalek. All rights reserved.

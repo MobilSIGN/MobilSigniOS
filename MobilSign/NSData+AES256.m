@@ -1,9 +1,9 @@
 //
 //  NSData+AES256.m
-//  CryptoExercise
+//  MobilSign
 //
 //  Created by Marek Spalek on 11/7/12.
-//
+//  Copyright (c) 2012 Marek Spalek. All rights reserved.
 //
 
 #import "NSData+AES256.h"

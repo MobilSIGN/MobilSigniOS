@@ -66,7 +66,7 @@
 {
     if (!_errorAlert) {
         _errorAlert = [[UIAlertView alloc] initWithTitle:@"Can't connect to server"
-                                                 message:@"Please, chceck server address or try again later."
+                                                 message:@"Please, check server address or try again later."
                                                 delegate:nil
                                        cancelButtonTitle:@"Ok"
                                        otherButtonTitles:nil];
